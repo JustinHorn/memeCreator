@@ -1,0 +1,27 @@
+.component {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.typeContainer {
+  height: 40px;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.linkMemeTypes {
+  margin-top: 100px;
+  padding: 20px;
+  background-color: linen;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+}
+
+.memeTypesImg {
+  width: 60px;
+  height: 60px;
+}

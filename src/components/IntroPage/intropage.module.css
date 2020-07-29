@@ -1,0 +1,30 @@
+.component {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+nav {
+  background-color: wheat;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px;
+  margin: 0 30px;
+}
+
+.Link {
+  background-color: wheat;
+  margin: 10px 10px;
+  padding: 20px 20px;
+}
+
+.imgContainer {
+  background-color: lightgoldenrodyellow;
+  display: grid;
+  max-width: 60%;
+  max-height: 60%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}

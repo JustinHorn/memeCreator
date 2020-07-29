@@ -1,0 +1,28 @@
+.component {
+}
+
+.editor {
+  display: grid;
+
+  grid-template-rows: 1fr 5fr auto;
+  grid-template-columns: 1fr 5fr 5fr 1fr;
+
+  grid-template-areas:
+    ". header . ."
+    ". meme options .";
+}
+
+.header {
+  grid-area: header;
+}
+
+.meme {
+  grid-area: meme;
+  /* background: url("https://en.meming.world/images/en/6/6e/Surprised_Pikachu.jpg");
+  background-repeat: no-repeat;
+  background-size: contain, cover;*/
+}
+
+.options {
+  grid-area: options;
+}
