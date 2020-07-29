@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/memeCreator/static/css/main.523f09c5.chunk.css",
+    "main.js": "/memeCreator/static/js/main.4521405f.chunk.js",
+    "main.js.map": "/memeCreator/static/js/main.4521405f.chunk.js.map",
+    "runtime-main.js": "/memeCreator/static/js/runtime-main.3c140523.js",
+    "runtime-main.js.map": "/memeCreator/static/js/runtime-main.3c140523.js.map",
+    "static/js/2.a7102cb2.chunk.js": "/memeCreator/static/js/2.a7102cb2.chunk.js",
+    "static/js/2.a7102cb2.chunk.js.map": "/memeCreator/static/js/2.a7102cb2.chunk.js.map",
+    "index.html": "/memeCreator/index.html",
+    "precache-manifest.e255889e478c782e3afe50aaed4c71d2.js": "/memeCreator/precache-manifest.e255889e478c782e3afe50aaed4c71d2.js",
+    "service-worker.js": "/memeCreator/service-worker.js",
+    "static/css/main.523f09c5.chunk.css.map": "/memeCreator/static/css/main.523f09c5.chunk.css.map",
+    "static/js/2.a7102cb2.chunk.js.LICENSE.txt": "/memeCreator/static/js/2.a7102cb2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3c140523.js",
+    "static/js/2.a7102cb2.chunk.js",
+    "static/css/main.523f09c5.chunk.css",
+    "static/js/main.4521405f.chunk.js"
+  ]
+}
