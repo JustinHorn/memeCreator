@@ -1,28 +1,41 @@
-.component {
-}
-
 .editor {
-  display: grid;
-
-  grid-template-rows: 1fr 5fr auto;
-  grid-template-columns: 1fr 5fr 5fr 1fr;
-
-  grid-template-areas:
-    ". header . ."
-    ". meme options .";
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
   grid-area: header;
 }
 
+.bodyContainer {
+  display: flex;
+  background-color: lightcyan;
+}
+
 .meme {
-  grid-area: meme;
-  /* background: url("https://en.meming.world/images/en/6/6e/Surprised_Pikachu.jpg");
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-repeat: no-repeat;
-  background-size: contain, cover;*/
+  background-size: contain, cover;
+}
+
+.memeImage {
+  color: red;
+  width: 200px;
+  height: 100px;
+  background-size: contain;
+}
+
+.textBottom {
+  color: black;
 }
 
 .options {
   grid-area: options;
+}
+
+.resultImage {
+  color: blue;
 }
