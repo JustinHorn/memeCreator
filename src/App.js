@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/memetypes/:memetype">
+        <Route path="/memetypes/:memeType">
           <MemeEditor />
         </Route>
         <Route path="/memetypes">
