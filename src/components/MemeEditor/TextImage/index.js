@@ -2,45 +2,85 @@ import React, { useState, useEffect } from "react";
 
 import styles from "./index.module.css";
 
-import TextInImage from "./text_image/In";
-import TextOuOfImage from "./text_image/Out";
+export default ({ downloadImg, image, getImage }) => {
+  const [topText, setTopText] = useState({ text: "top text", inner: true });
+  const [bottomText, setBottomText] = useState({
+    text: "bottom text",
+    inner: true,
+  });
 
-export default ({ downloadImg, image, getImage, textIn }) => {
-  const [topText, setTopText] = useState("top text");
-  const [bottomText, setBottomText] = useState("bottom text");
+  const getInnerStyle = (text) => {
+    return {
+      display: text.inner ? "block" : "none",
+      color: text.inner ? "white" : "black",
+    };
+  };
+
+  const getOuterStyle = (text) => {
+    return {
+      display: !text.inner ? "block" : "none",
+      color: text.inner ? "white" : "black",
+    };
+  };
 
   return (
     <div className={styles.bodyContainer}>
       <div className={styles.meme}>
-        {(textIn && (
-          <TextInImage
-            image={image}
-            topText={topText}
-            bottomText={bottomText}
-          />
-        )) || (
-          <TextOuOfImage
-            image={image}
-            topText={topText}
-            bottomText={bottomText}
-          />
-        )}
+        <div style={getOuterStyle(topText)} className={styles.textTop}>
+          {topText.text}
+        </div>
+        {/*Image beginn*/}
+
+        <div
+          className={styles.memeImage}
+          style={{
+            backgroundImage: "url(" + image.src + ")",
+            height: image.height + "px",
+            width: image.width + "px",
+          }}
+        >
+          <div style={getInnerStyle(topText)} className={styles.textTop}>
+            {topText.text}
+          </div>
+          <span></span>
+          <div style={getInnerStyle(bottomText)} className={styles.textBottom}>
+            {bottomText.text}
+          </div>
+        </div>
+        {/*Image end*/}
+        <div style={getOuterStyle(bottomText)} className={styles.textBottom}>
+          {bottomText.text}
+        </div>
       </div>
       <div className={styles.options}>
         <input
           type="text"
-          value={topText}
+          value={topText.text}
           onChange={(e) => {
-            setTopText(e.target.value);
+            setTopText({ ...topText, text: e.target.value });
           }}
         />
         <input
           type="text"
-          value={bottomText}
+          value={bottomText.text}
           onChange={(e) => {
-            setBottomText(e.target.value);
+            setBottomText({ ...bottomText, text: e.target.value });
           }}
         />
+
+        <button
+          onClick={() => setTopText({ ...topText, inner: !topText.inner })}
+        >
+          toggle topText in and out
+        </button>
+        <button
+          onClick={() =>
+            setBottomText({ ...bottomText, inner: !bottomText.inner })
+          }
+        >
+          toggle bottom text in and out
+        </button>
+
         <button onClick={() => downloadImg(styles.meme)}>Download Image</button>
         <input
           type="file"

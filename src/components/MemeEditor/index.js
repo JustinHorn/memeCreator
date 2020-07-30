@@ -51,12 +51,7 @@ export default () => {
       <div className={styles.header}>
         <h3>This is the MemeEditor </h3>
       </div>
-      <TextImage
-        textIn={memeType === "textInOfImage"}
-        downloadImg={downloadImg}
-        image={image}
-        getImage={getImage}
-      />
+      <TextImage downloadImg={downloadImg} image={image} getImage={getImage} />
     </div>
   );
 };
