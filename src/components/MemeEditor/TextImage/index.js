@@ -11,16 +11,21 @@ export default ({ downloadImg, image, getImage, textIn }) => {
 
   return (
     <div className={styles.bodyContainer}>
-      {(textIn && (
-        <TextInImage image={image} topText={topText} bottomText={bottomText} />
-      )) || (
-        <TextOuOfImage
-          image={image}
-          topText={topText}
-          bottomText={bottomText}
-        />
-      )}
-
+      <div className={styles.meme}>
+        {(textIn && (
+          <TextInImage
+            image={image}
+            topText={topText}
+            bottomText={bottomText}
+          />
+        )) || (
+          <TextOuOfImage
+            image={image}
+            topText={topText}
+            bottomText={bottomText}
+          />
+        )}
+      </div>
       <div className={styles.options}>
         <input
           type="text"
