@@ -30,6 +30,18 @@
   background-repeat: no-repeat;
 
   background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textBottom {
+  color: white;
+}
+
+.textTop {
+  color: white;
 }
 
 .options {
@@ -41,10 +53,6 @@
 .options > * {
   margin-bottom: 5px;
   width: 80%;
-}
-
-.textBottom {
-  color: black;
 }
 
 .options {
