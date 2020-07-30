@@ -1,6 +1,7 @@
 .editor {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .header {
@@ -37,5 +38,6 @@
 }
 
 .resultImage {
+  margin: 0 auto;
   color: blue;
 }

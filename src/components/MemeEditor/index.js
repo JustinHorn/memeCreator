@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -11,10 +11,12 @@ import anrgyImg from "../../images/AngrySection.jpeg";
 export default () => {
   let { memetype } = useParams();
 
+  const [topText, setTopText] = useState("top text");
+  const [bottomText, setBottomText] = useState("bottom text");
+  const [image, setImage] = useState(anrgyImg);
+
   setTimeout(() => {
     const node = document.querySelector("." + styles.meme);
-
-    console.log(node);
 
     domtoimage
       .toPng(node)
@@ -26,6 +28,14 @@ export default () => {
         console.error("oops, something went wrong!", error);
       });
   }, 1000);
+
+  const download = () => {
+    var link = document.createElement("a");
+    link.download = "meme.jpeg";
+    link.href = document.querySelector("." + styles.resultImage).src;
+    console.log(link.href);
+    link.click();
+  };
 
   return (
     <div>
@@ -41,27 +51,54 @@ export default () => {
         <div className={styles.bodyContainer}>
           <div className={styles.meme}>
             {/* Meme goes here*/}
-            <div>meme text top</div>
+            <div>{topText}</div>
             <div
               className={styles.memeImage}
-              style={{ backgroundImage: "url(" + anrgyImg + ")" }}
-            >
-              Image
-            </div>
-            <div className={styles.textBottom}>meme text bottom</div>
+              style={{ backgroundImage: "url(" + image + ")" }}
+            ></div>
+            <div className={styles.textBottom}>{bottomText}</div>
           </div>
           <div className={styles.options}>
-            <input type="text" value="Option 1" />
-            <input type="text" value="Option 2" />
-            <input type="text" value="Option 3" />
+            <input
+              type="text"
+              value={topText}
+              onChange={(e) => {
+                setTopText(e.target.value);
+              }}
+            />
+            <input
+              type="text"
+              value={bottomText}
+              onChange={(e) => {
+                setBottomText(e.target.value);
+              }}
+            />
+            <button onClick={download}> Download Image</button>
+            <input
+              type="file"
+              name="load image"
+              accept="image/png, image/jpeg"
+              onChange={(e) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                  setImage(e.target.result);
+                };
+                reader.readAsDataURL(e.target.files[0]);
+
+                console.log(e.target.files[0]);
+                //  setImage(e.target.files[0]);
+              }}
+            />
           </div>
         </div>
       </div>
-      <img
-        src=""
-        className={styles.resultImage}
-        alt="this will be the result"
-      />
+      <div>
+        <img
+          src=""
+          className={styles.resultImage}
+          alt="this will be the result"
+        />
+      </div>
     </div>
   );
 };
