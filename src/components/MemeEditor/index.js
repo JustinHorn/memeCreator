@@ -12,11 +12,14 @@ import TextInImage from "./textInImage";
 export default () => {
   const { memeType } = useParams();
   // textInOfImage or textOutOfImage
-  if (memeType === "textInOfImage") {
-    return <TextInImage></TextInImage>;
-  } else if (memeType === "textOutOfImage") {
-    return <TextOutOfImage></TextOutOfImage>;
-  }
-
-  return "";
+  return (
+    <div className={styles.editor}>
+      <div className={styles.header}>
+        <h3>This is the MemeEditor </h3>
+      </div>
+      {(memeType === "textInOfImage" && <TextInImage></TextInImage>) || (
+        <TextOutOfImage></TextOutOfImage>
+      )}
+    </div>
+  );
 };

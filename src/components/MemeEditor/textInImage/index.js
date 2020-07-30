@@ -43,51 +43,44 @@ export default () => {
   };
 
   return (
-    <div className={styles.editor}>
-      <div className={styles.header}>
-        <h3>This is the MemeEditor </h3>
-      </div>
-      <div className={styles.bodyContainer}>
-        <div className={styles.meme}>
-          {/* Meme goes here*/}
+    <div className={styles.bodyContainer}>
+      <div className={styles.meme}>
+        {/* Meme goes here*/}
 
-          <div
-            className={styles.memeImage}
-            style={{
-              backgroundImage: "url(" + image.src + ")",
-              height: image.height + "px",
-              width: image.width + "px",
-            }}
-          >
-            <div className={styles.textTop}>{topText}</div>
-            <div className={styles.textBottom}>{bottomText}</div>
-          </div>
+        <div
+          className={styles.memeImage}
+          style={{
+            backgroundImage: "url(" + image.src + ")",
+            height: image.height + "px",
+            width: image.width + "px",
+          }}
+        >
+          <div className={styles.textTop}>{topText}</div>
+          <div className={styles.textBottom}>{bottomText}</div>
         </div>
-        <div className={styles.options}>
-          <input
-            type="text"
-            value={topText}
-            onChange={(e) => {
-              setTopText(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            value={bottomText}
-            onChange={(e) => {
-              setBottomText(e.target.value);
-            }}
-          />
-          <button onClick={() => downloadImg(styles.meme)}>
-            Download Image
-          </button>
-          <input
-            type="file"
-            name="load image"
-            accept="image/png, image/jpeg"
-            onChange={getImage}
-          />
-        </div>
+      </div>
+      <div className={styles.options}>
+        <input
+          type="text"
+          value={topText}
+          onChange={(e) => {
+            setTopText(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          value={bottomText}
+          onChange={(e) => {
+            setBottomText(e.target.value);
+          }}
+        />
+        <button onClick={() => downloadImg(styles.meme)}>Download Image</button>
+        <input
+          type="file"
+          name="load image"
+          accept="image/png, image/jpeg"
+          onChange={getImage}
+        />
       </div>
     </div>
   );
