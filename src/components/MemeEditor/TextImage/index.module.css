@@ -14,12 +14,11 @@
 }
 
 .meme {
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-repeat: no-repeat;
-  background-size: contain, cover;
+  background-color: mintcream;
+  align-items: center;
 }
 
 .memeImage {
@@ -42,6 +41,13 @@
 
 .textTop {
   color: white;
+}
+
+.uploadBottom {
+}
+
+.download {
+  color: navajowhite;
 }
 
 .options {

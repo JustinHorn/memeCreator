@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import styles from "./index.module.css";
 
@@ -15,11 +15,12 @@ export default ({ downloadImg, image, getImage }) => {
       color: text.inner ? "white" : "black",
     };
   };
-
+  // Funtion that create the top text section
   const getOuterStyle = (text) => {
     return {
       display: !text.inner ? "block" : "none",
       color: text.inner ? "white" : "black",
+      backgroundColor: text.inner ? "transparent" : "white",
     };
   };
 
@@ -67,12 +68,14 @@ export default ({ downloadImg, image, getImage }) => {
             setBottomText({ ...bottomText, text: e.target.value });
           }}
         />
-
+        {/* Button to Change Top text position */}
         <button
           onClick={() => setTopText({ ...topText, inner: !topText.inner })}
         >
           toggle topText in and out
         </button>
+
+        {/* Button to Change Bottom text position */}
         <button
           onClick={() =>
             setBottomText({ ...bottomText, inner: !bottomText.inner })
@@ -81,12 +84,19 @@ export default ({ downloadImg, image, getImage }) => {
           toggle bottom text in and out
         </button>
 
-        <button onClick={() => downloadImg(styles.meme)}>Download Image</button>
+        <button className="download" onClick={() => downloadImg(styles.meme)}>
+          Download Image
+        </button>
+        <label htmlFor="files" className="uploadBottom">
+          Upload an Image
+        </label>
         <input
+          id="files"
           type="file"
           name="load image"
           accept="image/png, image/jpeg"
           onChange={getImage}
+          style={{ visibility: "hidden" }}
         />
       </div>
     </div>
