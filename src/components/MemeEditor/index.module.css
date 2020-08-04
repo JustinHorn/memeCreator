@@ -2,8 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #cacaaa;
+  height: 120vh;
+  width: 100vw;
 }
 
 .header {
   grid-area: header;
+}
+h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 40px;
 }
