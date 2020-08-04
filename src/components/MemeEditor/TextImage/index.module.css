@@ -1,24 +1,11 @@
-.editor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header {
-  grid-area: header;
-}
+/* This is the css for the Container that have the meme and the Buttons with the text */
 
 .bodyContainer {
   display: flex;
   background-color: lightcyan;
 }
 
-.meme {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: mintcream;
-  align-items: center;
+.memeContainer {
 }
 
 .memeImage {
@@ -37,10 +24,16 @@
 
 .textBottom {
   color: white;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  text-align: center;
 }
 
 .textTop {
   color: white;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  text-align: center;
 }
 
 .uploadBottom {

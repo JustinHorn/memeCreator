@@ -26,10 +26,17 @@ export default ({ downloadImg, image, getImage }) => {
 
   return (
     <div className={styles.bodyContainer}>
-      <div className={styles.meme}>
+      <div
+        className={styles.memeContainer}
+        style={{
+          height: image.height + "px",
+          width: image.width + "px",
+        }}
+      >
         <div style={getOuterStyle(topText)} className={styles.textTop}>
           {topText.text}
         </div>
+
         {/*Image beginn*/}
 
         <div
@@ -43,12 +50,17 @@ export default ({ downloadImg, image, getImage }) => {
           <div style={getInnerStyle(topText)} className={styles.textTop}>
             {topText.text}
           </div>
+
+          {/* This span prevents that the bottom text to go up when the top text is outside of the image */}
           <span></span>
+
           <div style={getInnerStyle(bottomText)} className={styles.textBottom}>
             {bottomText.text}
           </div>
         </div>
+
         {/*Image end*/}
+
         <div style={getOuterStyle(bottomText)} className={styles.textBottom}>
           {bottomText.text}
         </div>
