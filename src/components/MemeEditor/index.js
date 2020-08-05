@@ -9,6 +9,7 @@ import styles from "./index.module.css";
 import TextImage from "./TextImage";
 
 import FreeStyleMeme from "./FreeStyleMeme";
+const nums = Math.floor(Math.random() * 100);
 
 export default () => {
   const { memeType } = useParams();
@@ -46,8 +47,8 @@ export default () => {
   const handleMemeSelector = (e) => {
     setSelectedMeme({
       src: e.target.src,
-      height: e.target.height,
-      width: e.target.width,
+      height: e.target.height * 5,
+      width: e.target.width * 5,
     });
   };
   return (
@@ -55,23 +56,30 @@ export default () => {
       <div className={styles.header}>
         <h3>Make Your Own Meme! </h3>
       </div>
-      <div>
-        {meme.slice(0, 3).map((img) => (
-          <img
-            onClick={handleMemeSelector}
-            src={img.src}
-            style={{ width: img.width + "px", height: img.height + "px" }}
-            alt="img"
-          ></img>
-        ))}
+      <div className={styles.bodyContainer}>
+        <div className={styles.egMemeContainer}>
+          {meme.slice(nums, nums + 6).map((img) => (
+            <img
+              className={styles.imgMeme}
+              onClick={handleMemeSelector}
+              src={img.src}
+              style={{
+                width: img.width * 0.2 + "px",
+                height: img.height * 0.2 + "px",
+              }}
+              alt="img"
+            ></img>
+          ))}
+        </div>
+        <div>
+          {memeType === "freestyle" && (
+            <FreeStyleMeme selectedMeme={selectedMeme} />
+          )}
+          {memeType !== "freestyle" && (
+            <TextImage selectedMeme={selectedMeme} />
+          )}
+        </div>
       </div>
-      <div>
-        {memeType === "freestyle" && (
-          <FreeStyleMeme selectedMeme={selectedMeme} />
-        )}
-        {memeType !== "freestyle" && <TextImage selectedMeme={selectedMeme} />}
-      </div>
-      <div></div>
     </div>
   );
 };
