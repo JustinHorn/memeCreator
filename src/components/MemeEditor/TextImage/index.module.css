@@ -4,6 +4,10 @@
   display: flex;
 }
 
+.meme {
+  color: green;
+}
+
 .memeImage {
   background-size: contain;
   display: flex;

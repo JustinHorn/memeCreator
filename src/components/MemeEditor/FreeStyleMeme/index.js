@@ -4,8 +4,14 @@ import styles from "./index.module.css";
 
 import Meme from "./Meme";
 
-export default ({ downloadImg, image, getImage }) => {
+import downloadImg from "../downloadImg";
+
+import useImage from "../useImage";
+
+export default () => {
   const [memeTexts, setMemeTexts] = useState([]);
+
+  const [image, getImage] = useImage();
 
   const onMemeClick = (e) => {
     const newMemeText = getNewMemeText(e);

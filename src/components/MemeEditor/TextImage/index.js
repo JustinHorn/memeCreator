@@ -2,12 +2,18 @@ import React, { useState } from "react";
 
 import styles from "./index.module.css";
 
-export default ({ downloadImg, image, getImage }) => {
+import downloadImg from "../downloadImg";
+
+import useImage from "../useImage";
+
+export default ({}) => {
   const [topText, setTopText] = useState({ text: "top text", inner: true });
   const [bottomText, setBottomText] = useState({
     text: "bottom text",
     inner: true,
   });
+
+  const [image, getImage] = useImage();
 
   const [fontText, setFontText] = useState("");
 
@@ -21,7 +27,7 @@ export default ({ downloadImg, image, getImage }) => {
       fontSize: SizeOfFont,
     };
   };
-  // Funtion that create the top text section
+  // Function that create the top text section
   const getOuterStyle = (text, font, SizeOfFont) => {
     return {
       display: !text.inner ? "block" : "none",
@@ -41,7 +47,6 @@ export default ({ downloadImg, image, getImage }) => {
           width: image.width + "px",
         }}
       >
-        {/* Outside Top text */}
         <div
           style={getOuterStyle(topText, fontText, fontSize)}
           className={styles.textTop}
@@ -49,24 +54,13 @@ export default ({ downloadImg, image, getImage }) => {
           {topText.text}
         </div>
 
-        {/*Image beginn*/}
-
-        <div
-          className={styles.memeImage}
-          style={{
-            backgroundImage: "url(" + image.src + ")",
-            height: image.height + "px",
-            width: image.width + "px",
-          }}
-        >
-          {/* Inside Top text */}
+        <MemeImage image={image} onClick={() => {}}>
           <div
             style={getInnerStyle(topText, fontText, fontSize)}
             className={styles.textTop}
           >
             {topText.text}
           </div>
-
           {/* This span prevents that the bottom text to go up when the top text is outside of the image */}
           <span></span>
 
@@ -77,11 +71,7 @@ export default ({ downloadImg, image, getImage }) => {
           >
             {bottomText.text}
           </div>
-        </div>
-
-        {/*Image end*/}
-
-        {/* Outside Bottom text */}
+        </MemeImage>
         <div
           style={getOuterStyle(bottomText, fontText, fontSize)}
           className={styles.textBottom}
@@ -136,7 +126,11 @@ export default ({ downloadImg, image, getImage }) => {
 
         <button
           className={styles.Button}
-          onClick={() => downloadImg(styles.meme)}
+          onClick={() => {
+            const node = document.querySelector("." + styles.memeImage);
+
+            downloadImg(node);
+          }}
         >
           Download Image
         </button>
@@ -214,6 +208,24 @@ export default ({ downloadImg, image, getImage }) => {
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const MemeImage = ({ image, children }) => {
+  return (
+    <div
+      className={styles.memeImage}
+      style={{
+        backgroundImage: "url(" + image.src + ")",
+        height: image.height + "px",
+        width: image.width + "px",
+        position: "relative",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+      }}
+    >
+      {children}
     </div>
   );
 };

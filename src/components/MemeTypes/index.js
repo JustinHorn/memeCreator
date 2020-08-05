@@ -27,7 +27,7 @@ export default () => {
         </Link>
         <Link
           className={styles.linkMemeTypes}
-          to="/memeCreator/memetypes/test/editor2"
+          to="/memeCreator/memetypes/freestyle"
         >
           <h3>Editor 2</h3>
           <img
