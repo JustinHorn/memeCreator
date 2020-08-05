@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./intropage.module.css";
 
 export default () => {
+  const [meme, setMeme] = useState([]);
+  useEffect(() => {
+    fetch(" https://api.imgflip.com/get_memes")
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setMeme(result.data.memes.map((x) => x.url)); // <-- this is an array of urls
+      })
+      .catch((error) => {});
+  }, []);
+
   return (
     <div className={styles.component}>
       <br />
@@ -18,15 +29,9 @@ export default () => {
       </Link>
       <br />
       <div className={styles.imgContainer}>
-        <img src="https://picsum.photos/200" alt="img1"></img>
-        <img src="https://picsum.photos/200" alt="img2"></img>
-        <img src="https://picsum.photos/200" alt="img3"></img>
-        <img src="https://picsum.photos/200" alt="img4"></img>
-        <img src="https://picsum.photos/200" alt="img5"></img>
-        <img src="https://picsum.photos/200" alt="img6"></img>
-        <img src="https://picsum.photos/200" alt="img7"></img>
-        <img src="https://picsum.photos/200" alt="img8"></img>
-        <img src="https://picsum.photos/200" alt="img9"></img>
+        {meme.slice(0, 20).map((x) => (
+          <img src={x} alt="img1"></img>
+        ))}
       </div>
     </div>
   );

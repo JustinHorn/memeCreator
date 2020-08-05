@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 
 import styles from "./index.module.css";
 
@@ -10,10 +10,16 @@ import Options from "./Options";
 
 export const MemeTextsContext = React.createContext([]);
 
-export default () => {
+export default ({ selectedMeme }) => {
   const [memeTexts, setMemeTexts] = useState([]);
 
-  const [image, getImage] = useImage();
+  const [image, getImage, setImage] = useImage(selectedMeme);
+
+  useEffect(() => {
+    if (selectedMeme) {
+      setImage(selectedMeme);
+    }
+  }, [selectedMeme]);
 
   const addTextOnClick = (e) => {
     const newMemeText = getNewMemeText(e);

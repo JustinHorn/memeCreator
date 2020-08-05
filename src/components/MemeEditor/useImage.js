@@ -42,5 +42,5 @@ export default () => {
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  return [image, getImage];
+  return [image, getImage, setImage];
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./index.module.css";
 
@@ -10,14 +10,20 @@ import FontButtons from "./FontButtons";
 
 import ColorPicker from "./ColorPicker";
 
-export default ({}) => {
+export default ({ selectedMeme }) => {
   const [topText, setTopText] = useState({ text: "top text", inner: true });
   const [bottomText, setBottomText] = useState({
     text: "bottom text",
     inner: true,
   });
 
-  const [image, getImage] = useImage();
+  const [image, getImage, setImage] = useImage();
+
+  useEffect(() => {
+    if (selectedMeme) {
+      setImage(selectedMeme);
+    }
+  }, [selectedMeme]);
 
   const [fontText, setFontText] = useState("");
 
