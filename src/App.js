@@ -16,8 +16,7 @@ function App() {
           <MemeEditor2 />
         </Route>
         <Route path="/memeCreator/memetypes/:memeType">
-          {/*   <MemeEditor /> */}
-          <div>nothing</div>
+          <MemeEditor />
         </Route>
         <Route path="/memeCreator/memetypes">
           <MemeTypes />

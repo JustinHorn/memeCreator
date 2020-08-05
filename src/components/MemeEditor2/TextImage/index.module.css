@@ -1,26 +1,6 @@
-.editor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .bodyContainer {
   display: flex;
-  background-color: lightcyan;
-}
-
-.memeImage {
-  color: red;
-  height: 200px;
-  max-width: 1000px;
-  max-height: 1000px;
-  background-repeat: no-repeat;
-
-  background-size: contain;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  background-color: gold;
 }
 
 .options {
@@ -34,12 +14,7 @@
   width: 80%;
 }
 
-.resultImage {
-  margin: 0 auto;
-  color: blue;
-}
-
-.memeTexts {
+.memeTextsButtons {
   display: flex;
   flex-direction: column;
 }

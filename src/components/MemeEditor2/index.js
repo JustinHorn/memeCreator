@@ -14,20 +14,9 @@ export default () => {
 
   const angryImg = "/memeCreator/images/AngrySection.jpeg";
 
-  const resizeImg = (img) => {
+  const handleResizeImg = (img) => {
     setTimeout(() => {
-      const MAX_SIZE = 500;
-      if (img.height > MAX_SIZE || img.width > MAX_SIZE) {
-        const ratio = img.height / img.width;
-
-        if (img.height > img.width) {
-          img.height = MAX_SIZE;
-          img.width = MAX_SIZE / ratio;
-        } else {
-          img.width = MAX_SIZE;
-          img.height = MAX_SIZE * ratio;
-        }
-      }
+      resizeImg(img, 500);
       setTimeout(() => {
         setImage(img);
       }, 0);
@@ -38,7 +27,7 @@ export default () => {
   img.src = angryImg;
 
   useEffect(() => {
-    resizeImg(img);
+    handleResizeImg(img);
   }, []);
 
   const getImage = (e) => {
@@ -47,7 +36,7 @@ export default () => {
       const img = new Image();
 
       img.src = e.target.result;
-      resizeImg(img);
+      handleResizeImg(img);
     };
     reader.readAsDataURL(e.target.files[0]);
   };
@@ -60,6 +49,21 @@ export default () => {
       <TextImage downloadImg={downloadImg} image={image} getImage={getImage} />
     </div>
   );
+};
+
+const resizeImg = (img, MAX_SIZE) => {
+  if (img.height > MAX_SIZE || img.width > MAX_SIZE) {
+    const ratio = img.height / img.width;
+
+    if (img.height > img.width) {
+      img.height = MAX_SIZE;
+      img.width = MAX_SIZE / ratio;
+    } else {
+      img.width = MAX_SIZE;
+      img.height = MAX_SIZE * ratio;
+    }
+  }
+  return img;
 };
 
 function downloadImg(node) {
