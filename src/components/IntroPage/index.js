@@ -13,7 +13,7 @@ export default () => {
       <br />
       <h1>Welcome to the Meme creator</h1>
       <br />
-      <Link to="/memetypes" className={styles.Link}>
+      <Link to="/memeCreator/memetypes" className={styles.Link}>
         Get Started
       </Link>
       <br />
