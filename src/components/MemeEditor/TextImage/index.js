@@ -6,6 +6,10 @@ import downloadImg from "../downloadImg";
 
 import useImage from "../useImage";
 
+import FontButtons from "./FontButtons";
+
+import ColorPicker from "./ColorPicker";
+
 export default ({}) => {
   const [topText, setTopText] = useState({ text: "top text", inner: true });
   const [bottomText, setBottomText] = useState({
@@ -19,10 +23,12 @@ export default ({}) => {
 
   const [fontSize, setFontSize] = useState(12);
 
+  const [textColor, setTextColor] = useState("black");
+
   const getInnerStyle = (text, font, SizeOfFont) => {
     return {
       display: text.inner ? "block" : "none",
-      color: text.inner ? "white" : "black",
+      color: textColor,
       fontFamily: font,
       fontSize: SizeOfFont,
     };
@@ -31,7 +37,7 @@ export default ({}) => {
   const getOuterStyle = (text, font, SizeOfFont) => {
     return {
       display: !text.inner ? "block" : "none",
-      color: text.inner ? "white" : "black",
+      color: textColor,
       backgroundColor: text.inner ? "transparent" : "white",
       fontFamily: font,
       fontSize: SizeOfFont,
@@ -81,7 +87,7 @@ export default ({}) => {
       </div>
       <div className={styles.options}>
         {/* Text Input. Top and Bottom */}
-        <label for="inp" className={styles.inp}>
+        <label htmlFor="inp" className={styles.inp}>
           <input
             id="inp"
             type="text"
@@ -93,7 +99,7 @@ export default ({}) => {
           <span className={styles.label}>Top Text</span>
           <span className={styles.focusBg}></span>
         </label>
-        <label for="inp2" className={styles.inp}>
+        <label htmlFor="inp2" className={styles.inp}>
           <input
             id="inp2"
             type="text"
@@ -111,7 +117,7 @@ export default ({}) => {
           className={styles.Button}
           onClick={() => setTopText({ ...topText, inner: !topText.inner })}
         >
-          toggle topText in and out
+          Top in/out
         </button>
 
         {/* Button to Change Bottom text position */}
@@ -121,7 +127,7 @@ export default ({}) => {
             setBottomText({ ...bottomText, inner: !bottomText.inner })
           }
         >
-          toggle bottom text in and out
+          bottom in/out
         </button>
 
         <button
@@ -146,67 +152,13 @@ export default ({}) => {
           style={{ visibility: "hidden" }}
         />
 
-        <div className={styles.styleOptions}>
-          {/* Buttons for the Font family */}
-          <div className={styles.fontButtonContainer}>
-            <button
-              className={styles.Button}
-              onClick={() => setFontText("Georgia, serif")}
-              style={{
-                fontFamily: "Georgia, serif",
-                fontSize: 15 + "px",
-              }}
-            >
-              Georgia
-            </button>
-            <button
-              className={styles.Button}
-              onClick={() => setFontText("Arial Black")}
-              style={{ fontFamily: "Arial Black", fontSize: 13 + "px" }}
-            >
-              Arial Black
-            </button>
-            <button
-              className={styles.Button}
-              onClick={() => setFontText("monospace")}
-              style={{ fontFamily: "monospace" }}
-            >
-              Monospace
-            </button>
-            <button
-              className={styles.Button}
-              onClick={() => setFontText("Comic Sans MS")}
-              style={{ fontFamily: "Comic Sans MS" }}
-            >
-              Comic Sans
-            </button>
-            <button
-              className={styles.Button}
-              onClick={() => setFontText("cursive")}
-              style={{ fontFamily: "cursive" }}
-            >
-              Cursive
-            </button>
-          </div>
+        <FontButtons
+          setFont={setFontText}
+          setSize={setFontSize}
+          letterSize={fontSize}
+        ></FontButtons>
 
-          {/* Buttons for the size */}
-          <div className={styles.sizeButtons}>
-            <button
-              className={styles.Button}
-              onClick={() => setFontSize(fontSize + 1)}
-              style={{ fontSize: "15px" }}
-            >
-              A+
-            </button>
-            <button
-              className={styles.Button}
-              onClick={() => setFontSize(fontSize - 1)}
-              style={{ fontSize: "10px" }}
-            >
-              A-
-            </button>
-          </div>
-        </div>
+        <ColorPicker setColor={setTextColor} currentColor={textColor} />
       </div>
     </div>
   );

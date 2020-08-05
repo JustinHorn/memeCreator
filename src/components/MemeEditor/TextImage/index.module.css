@@ -41,17 +41,6 @@
 .styleOptions {
   display: flex;
 }
-
-.fontButtonContainer {
-  display: flex;
-  flex-direction: column;
-  margin-right: 5px;
-}
-
-.sizeButtons {
-  display: flex;
-}
-
 .Button {
   box-shadow: 0px 10px 14px -7px grey;
   background: #403233;
