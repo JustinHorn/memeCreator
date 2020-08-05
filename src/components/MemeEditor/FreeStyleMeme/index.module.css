@@ -2,19 +2,3 @@
   display: flex;
   background-color: gold;
 }
-
-.options {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-}
-.options > * {
-  margin-bottom: 5px;
-  width: 80%;
-}
-
-.memeTextsButtons {
-  display: flex;
-  flex-direction: column;
-}
