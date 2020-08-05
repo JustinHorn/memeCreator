@@ -55,7 +55,7 @@ export default () => {
   return (
     <div className={styles.editor}>
       <div className={styles.header}>
-        <h3>This is the MemeEditor </h3>
+        <h3>Make Your Own Meme! </h3>
       </div>
       <TextImage downloadImg={downloadImg} image={image} getImage={getImage} />
     </div>
