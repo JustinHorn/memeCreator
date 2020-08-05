@@ -1,4 +1,5 @@
 .bodyContainer {
   display: flex;
   background-color: gold;
+  align-items: center;
 }

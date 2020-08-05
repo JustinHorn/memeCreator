@@ -10,7 +10,7 @@ export default React.forwardRef(
     const MemeTexts = memeTexts.map((element, i) => (
       <MemeText
         key={i}
-        onDrag={(e) => changeMemeTextPosition(i, calcPos(e))}
+        onDrag={(e) => changeMemeTextPosition(i, calcPos(e, element.dnd))}
         style={element.style}
         text={element.text}
         setText={getSetText(i)}
@@ -63,7 +63,6 @@ const MemeText = React.forwardRef(({ onDrag, style, text, setText }, ref) => {
     <input
       draggable="true"
       onDragEnd={onDrag}
-      onDrag={onDrag}
       type="text"
       onChange={(e) => {
         e.target.style.width = e.target.value.length - 1 + "ch";
@@ -76,16 +75,10 @@ const MemeText = React.forwardRef(({ onDrag, style, text, setText }, ref) => {
   );
 });
 
-const calcPos = (e) => {
-  const x = e.clientX - e.target.parentNode.offsetLeft;
-  const y = e.clientY - e.target.parentNode.offsetTop;
+const calcPos = (e, dnd) => {
+  const x = e.pageX - dnd.left;
+  const y = e.pageY - dnd.top;
   const left = x + "px";
   const top = y + "px";
-  console.log("client: " + e.clientX);
-
-  console.log("offset: " + e.target.parentNode.offsetLeft);
-  console.log("left: " + left);
-  console.log("top: " + top);
-
   return { left, top };
 };

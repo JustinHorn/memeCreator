@@ -55,6 +55,7 @@ export default ({ selectedMeme }) => {
     arr[index] = JSON.parse(JSON.stringify(arr[index]));
     arr[index].style.left = newPos.left;
     arr[index].style.top = newPos.top;
+    arr[index].focus = true;
 
     setMemeTexts([...arr]);
   };
@@ -83,6 +84,7 @@ export default ({ selectedMeme }) => {
 };
 
 const getNewMemeText = (e) => {
+  const result = calcPos(e);
   const new_MemeText = {
     text: "text",
     style: {
@@ -93,9 +95,14 @@ const getNewMemeText = (e) => {
       width: "4ch",
       borderColor: "transparent",
       backgroundColor: "transparent",
-      ...calcPos(e),
+      left: result.left,
+      top: result.top,
     },
     focus: true,
+    dnd: {
+      left: result.totalOffsetLeft,
+      top: result.totalOffsetTop,
+    },
   };
 
   new_MemeText.style.color = "green";
@@ -103,9 +110,23 @@ const getNewMemeText = (e) => {
 };
 
 const calcPos = (e) => {
-  const x = e.clientX - e.target.parentNode.offsetLeft;
-  const y = e.clientY - e.target.parentNode.offsetTop;
+  const dim = getTotalLocation(e.target);
+
+  const x = e.pageX - dim.totalOffsetLeft;
+  const y = e.pageY - dim.totalOffsetTop;
   const left = x + "px";
   const top = y + "px";
-  return { left, top };
+  return { left, top, ...dim };
+};
+
+const getTotalLocation = (node) => {
+  let totalOffsetLeft = node.offsetLeft;
+  let totalOffsetTop = node.offsetTop;
+  while (node.offsetParent) {
+    node = node.offsetParent;
+
+    totalOffsetLeft += node.offsetLeft;
+    totalOffsetTop += node.offsetTop;
+  }
+  return { totalOffsetLeft, totalOffsetTop };
 };
