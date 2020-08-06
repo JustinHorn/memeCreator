@@ -4,13 +4,13 @@ import { MemeTextsContext } from "../index";
 
 export default React.forwardRef(
   ({ onImageClick, image, getSetText, changeMemeTextPosition }, ref) => {
-    const memeTexts = useContext(MemeTextsContext);
+    const { memeTexts, offset } = useContext(MemeTextsContext);
     const focus = useRefToFocus([memeTexts]);
 
     const MemeTexts = memeTexts.map((element, i) => (
       <MemeText
         key={i}
-        onDrag={(e) => changeMemeTextPosition(i, calcPos(e, element.dnd))}
+        onDrag={(e) => changeMemeTextPosition(i, calcPos(e, offset))}
         style={element.style}
         text={element.text}
         setText={getSetText(i)}
@@ -62,6 +62,7 @@ const MemeText = React.forwardRef(({ onDrag, style, text, setText }, ref) => {
   return (
     <input
       draggable="true"
+      onDrag={onDrag}
       onDragEnd={onDrag}
       type="text"
       onChange={(e) => {
@@ -75,9 +76,9 @@ const MemeText = React.forwardRef(({ onDrag, style, text, setText }, ref) => {
   );
 });
 
-const calcPos = (e, dnd) => {
-  const x = e.pageX - dnd.left;
-  const y = e.pageY - dnd.top;
+const calcPos = (e, offset) => {
+  const x = e.pageX - offset.totalOffsetLeft;
+  const y = e.pageY - offset.totalOffsetTop;
   const left = x + "px";
   const top = y + "px";
   return { left, top };

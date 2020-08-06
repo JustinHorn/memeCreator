@@ -33,7 +33,8 @@ export default ({ selectedMeme }) => {
   const getSetMemeText = (index) => {
     return (value) => {
       const arr = memeTexts.map((v) => ({ ...v, focus: false }));
-      arr[index] = { ...memeTexts[index], text: value };
+      arr[index] = JSON.parse(JSON.stringify(arr[index]));
+      arr[index].text = value;
       arr[index].focus = true;
       setMemeTexts([...arr]);
     };
@@ -62,9 +63,18 @@ export default ({ selectedMeme }) => {
 
   const memeImageRef = useRef();
 
+  const [offset, setOffSet] = useState({
+    totalOffsetLeft: 0,
+    totalOffsetTop: 0,
+  });
+
+  useEffect(() => {
+    setOffSet(getTotalLocation(memeImageRef.current));
+  }, [memeTexts]);
+
   return (
     <div className={styles.bodyContainer}>
-      <MemeTextsContext.Provider value={memeTexts}>
+      <MemeTextsContext.Provider value={{ memeTexts: memeTexts, offset }}>
         <Meme
           ref={memeImageRef}
           image={image}
@@ -99,10 +109,6 @@ const getNewMemeText = (e) => {
       top: result.top,
     },
     focus: true,
-    dnd: {
-      left: result.totalOffsetLeft,
-      top: result.totalOffsetTop,
-    },
   };
 
   new_MemeText.style.color = "green";

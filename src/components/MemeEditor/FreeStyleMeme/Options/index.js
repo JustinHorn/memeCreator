@@ -12,7 +12,7 @@ export default function Options({
   changeMemeTextStyle,
   removeMemeText,
 }) {
-  const memeTexts = useContext(MemeTextsContext);
+  const { memeTexts } = useContext(MemeTextsContext);
   return (
     <div className={styles.options}>
       <button className="download" onClick={(e) => downloadImg(meme.current)}>
