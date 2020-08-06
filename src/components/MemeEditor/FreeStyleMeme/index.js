@@ -8,6 +8,8 @@ import useImage from "../useImage";
 
 import Options from "./Options";
 
+import calcPos, { getTotalLocation } from "./calcPos";
+
 export const MemeTextsContext = React.createContext([]);
 
 export default ({ selectedMeme }) => {
@@ -102,7 +104,8 @@ const getNewMemeText = (e) => {
       position: "absolute",
       zIndex: "100",
       color: "white",
-      width: "4ch",
+      cols: "4",
+      fontSize: 30,
       borderColor: "transparent",
       backgroundColor: "transparent",
       left: result.left,
@@ -111,28 +114,5 @@ const getNewMemeText = (e) => {
     focus: true,
   };
 
-  new_MemeText.style.color = "green";
   return new_MemeText;
-};
-
-const calcPos = (e) => {
-  const dim = getTotalLocation(e.target);
-
-  const x = e.pageX - dim.totalOffsetLeft;
-  const y = e.pageY - dim.totalOffsetTop;
-  const left = x + "px";
-  const top = y + "px";
-  return { left, top, ...dim };
-};
-
-const getTotalLocation = (node) => {
-  let totalOffsetLeft = node.offsetLeft;
-  let totalOffsetTop = node.offsetTop;
-  while (node.offsetParent) {
-    node = node.offsetParent;
-
-    totalOffsetLeft += node.offsetLeft;
-    totalOffsetTop += node.offsetTop;
-  }
-  return { totalOffsetLeft, totalOffsetTop };
 };

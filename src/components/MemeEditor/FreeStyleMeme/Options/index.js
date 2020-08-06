@@ -64,6 +64,14 @@ const MemeTextOptions = ({ v, removeMemeText, changeMemeTextStyle, i }) => {
             changeMemeTextStyle(i, "backgroundColor", e.target.value)
           }
         />
+        <label htmlFor={i + "fontSize"}>Set css fontSize</label>
+        <input
+          id={i + "fontSize"}
+          value={v.style.fontSize}
+          onChange={(e) =>
+            changeMemeTextStyle(i, "fontSize", parseInt(e.target.value))
+          }
+        />
       </div>
     </div>
   );

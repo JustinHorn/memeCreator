@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useContext } from "react";
 
 import { MemeTextsContext } from "../index";
+import { calcRelativePos } from "../calcPos";
 
 export default React.forwardRef(
   ({ onImageClick, image, getSetText, changeMemeTextPosition }, ref) => {
@@ -10,7 +11,7 @@ export default React.forwardRef(
     const MemeTexts = memeTexts.map((element, i) => (
       <MemeText
         key={i}
-        onDrag={(e) => changeMemeTextPosition(i, calcPos(e, offset))}
+        onDrag={(e) => changeMemeTextPosition(i, calcRelativePos(e, offset))}
         style={element.style}
         text={element.text}
         setText={getSetText(i)}
@@ -59,27 +60,34 @@ const useRefToFocus = (arr) => {
 
 /*Forward ref makes it possible to forward the ref to the component*/
 const MemeText = React.forwardRef(({ onDrag, style, text, setText }, ref) => {
+  const expandWithText = (e) => {
+    const max = e.target.value
+      .split("\n")
+      .map((x) => x.length)
+      .reduce((total, num) => Math.max(total.length, num.length));
+    console.log(max);
+    e.target.style.width = max + 2 + "ch";
+  };
+
+  const adjustRows = (e) =>
+    (e.target.rows = Math.max(1, e.target.value.split("\n").length));
+
   return (
-    <input
+    <textarea
       draggable="true"
       onDrag={onDrag}
       onDragEnd={onDrag}
       type="text"
       onChange={(e) => {
-        e.target.style.width = e.target.value.length - 1 + "ch";
+        adjustRows(e);
+        expandWithText(e);
         setText(e.target.value);
       }}
       value={text}
       style={style}
       ref={ref}
+      rows="1"
+      cols="4"
     />
   );
 });
-
-const calcPos = (e, offset) => {
-  const x = e.pageX - offset.totalOffsetLeft;
-  const y = e.pageY - offset.totalOffsetTop;
-  const left = x + "px";
-  const top = y + "px";
-  return { left, top };
-};
