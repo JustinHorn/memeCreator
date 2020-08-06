@@ -7,7 +7,7 @@ import downloadImg from "../../downloadImg";
 import { MemeTextsContext } from "../index";
 
 export default function Options({
-  meme,
+  memeImageRef,
   getImage,
   changeMemeTextStyle,
   removeMemeText,
@@ -15,7 +15,10 @@ export default function Options({
   const { memeTexts } = useContext(MemeTextsContext);
   return (
     <div className={styles.options}>
-      <button className="download" onClick={(e) => downloadImg(meme.current)}>
+      <button
+        className="download"
+        onClick={(e) => downloadImg(memeImageRef.current)}
+      >
         Download Image
       </button>
       <input
@@ -70,6 +73,21 @@ const MemeTextOptions = ({ v, removeMemeText, changeMemeTextStyle, i }) => {
           value={v.style.fontSize}
           onChange={(e) =>
             changeMemeTextStyle(i, "fontSize", parseInt(e.target.value))
+          }
+        />
+        <label htmlFor={i + "transform"}>Set css transform</label>
+        <input
+          id={i + "transform"}
+          value={v.style.transform}
+          onChange={(e) => changeMemeTextStyle(i, "transform", e.target.value)}
+        />
+
+        <label htmlFor={i + "textTransform"}>Set css textTransform</label>
+        <input
+          id={i + "textTransform"}
+          value={v.style.textTransform}
+          onChange={(e) =>
+            changeMemeTextStyle(i, "textTransform", e.target.value)
           }
         />
       </div>

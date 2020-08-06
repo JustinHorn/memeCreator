@@ -64,7 +64,7 @@ const MemeText = React.forwardRef(({ onDrag, style, text, setText }, ref) => {
     const max = e.target.value
       .split("\n")
       .map((x) => x.length)
-      .reduce((total, num) => Math.max(total.length, num.length));
+      .reduce((total, num) => Math.max(total, num));
     console.log(max);
     e.target.style.width = max + 2 + "ch";
   };
