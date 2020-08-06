@@ -58,8 +58,9 @@ export default () => {
       </div>
       <div className={styles.bodyContainer}>
         <div className={styles.egMemeContainer}>
-          {meme.slice(nums, nums + 6).map((img) => (
+          {meme.slice(nums, nums + 6).map((img, i) => (
             <img
+              key={i}
               className={styles.imgMeme}
               onClick={handleMemeSelector}
               src={img.src}

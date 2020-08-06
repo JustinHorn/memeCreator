@@ -6,16 +6,21 @@ import downloadImg from "../../downloadImg";
 
 import { MemeTextsContext } from "../index";
 
+import MemeTextOptions from "./MemeTextOptions";
+
 export default function Options({
-  meme,
+  memeImageRef,
   getImage,
   changeMemeTextStyle,
   removeMemeText,
 }) {
-  const memeTexts = useContext(MemeTextsContext);
+  const { memeTexts } = useContext(MemeTextsContext);
   return (
     <div className={styles.options}>
-      <button className="download" onClick={(e) => downloadImg(meme.current)}>
+      <button
+        className="download"
+        onClick={(e) => downloadImg(memeImageRef.current)}
+      >
         Download Image
       </button>
       <input
@@ -26,45 +31,20 @@ export default function Options({
         onChange={getImage}
       />
       <div className={styles.memeTextsButtons}>
-        {memeTexts.map((v, i) => (
-          <MemeTextOptions
-            key={i}
-            v={v}
-            i={i}
-            removeMemeText={removeMemeText}
-            changeMemeTextStyle={changeMemeTextStyle}
-          />
-        ))}
+        {memeTexts.map(
+          (v, i) =>
+            (v.focus && (
+              <MemeTextOptions
+                key={i}
+                v={v}
+                memeTextIndex={i}
+                removeMemeText={removeMemeText}
+                changeMemeTextStyle={changeMemeTextStyle}
+              />
+            )) ||
+            ""
+        )}
       </div>
     </div>
   );
 }
-
-const MemeTextOptions = ({ v, removeMemeText, changeMemeTextStyle, i }) => {
-  const [hide, setHide] = useState(true);
-
-  return (
-    <div>
-      <h5 onClick={(e) => setHide(!hide)}> {v.text}</h5>
-      <div style={{ display: hide ? "none" : "block" }}>
-        <button onClick={() => removeMemeText(i)}>Remove</button>
-        <br className="" />
-        <label htmlFor={i + "color"}>Set css color</label>
-        <input
-          id={i + "color"}
-          value={v.style.color}
-          onChange={(e) => changeMemeTextStyle(i, "color", e.target.value)}
-        />
-        <br className="" />
-        <label htmlFor={i + "backgroundColor"}>Set css backgroundColor</label>
-        <input
-          id={i + "backgroundColor"}
-          value={v.style.backgroundColor}
-          onChange={(e) =>
-            changeMemeTextStyle(i, "backgroundColor", e.target.value)
-          }
-        />
-      </div>
-    </div>
-  );
-};
