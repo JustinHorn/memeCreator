@@ -1,13 +1,17 @@
+import { useReducer } from "react";
+
 import calcPos from "./calcPos";
 
-export default function reducer(memeTexts, action) {
-  debugger;
+export default () => {
+  return useReducer(reducer, []);
+};
+
+function reducer(memeTexts, action) {
   switch (action.type) {
     case "addText":
       return addText(memeTexts, action);
     case "setText":
       return setText(memeTexts, action);
-
     case "removeText":
       return removeText(memeTexts, action);
     case "changeTextStyle":
@@ -22,15 +26,26 @@ export default function reducer(memeTexts, action) {
   }
 }
 
-export const removeText = (memeTexts, { index }) => {
-  return [...memeTexts.slice(0, index), ...memeTexts.slice(index + 1)];
-};
 export const addText = (memeTexts, { event }) => {
   const newMemeText = getNewMemeText(event);
   return [...memeTexts.map((v) => ({ ...v, focus: false })), newMemeText];
 };
 
-export const setText = (memeTexts, { index, newText }) => {
+export const removeText = (memeTexts, { id }) => {
+  const index = findIndexById(id, memeTexts);
+  return [...memeTexts.slice(0, index), ...memeTexts.slice(index + 1)];
+};
+
+const findIndexById = (id, arr) => {
+  return (
+    [0, ...arr].reduce(
+      (total, next, index) => (id === next.id && index) || total
+    ) - 1
+  );
+};
+
+export const setText = (memeTexts, { id, newText }) => {
+  const index = findIndexById(id, memeTexts);
   const arr = memeTexts.map((v) => ({ ...v, focus: false }));
   arr[index] = JSON.parse(JSON.stringify(arr[index]));
   arr[index].text = newText;
@@ -38,7 +53,8 @@ export const setText = (memeTexts, { index, newText }) => {
   return [...arr];
 };
 
-export const onFocus = (memeTexts, { index }) => {
+export const onFocus = (memeTexts, { id }) => {
+  const index = findIndexById(id, memeTexts);
   const arr = memeTexts.map((v) => ({ ...v, focus: false }));
   arr[index] = JSON.parse(JSON.stringify(arr[index]));
   arr[index].new = false;
@@ -46,7 +62,9 @@ export const onFocus = (memeTexts, { index }) => {
   return [...arr];
 };
 
-export const changeTextStyle = (memeTexts, { index, prop, value }) => {
+export const changeTextStyle = (memeTexts, { id, prop, value }) => {
+  const index = findIndexById(id, memeTexts);
+
   const arr = memeTexts.map((v) => ({ ...v, focus: false }));
   arr[index] = JSON.parse(JSON.stringify(arr[index]));
   if (prop === "fontSize") value = parseInt(value);
@@ -55,7 +73,8 @@ export const changeTextStyle = (memeTexts, { index, prop, value }) => {
   return [...arr];
 };
 
-export const changePosition = (memeTexts, { index, newPos }) => {
+export const changePosition = (memeTexts, { id, newPos }) => {
+  const index = findIndexById(id, memeTexts);
   const arr = memeTexts.map((v) => ({ ...v, focus: false }));
   arr[index] = JSON.parse(JSON.stringify(arr[index]));
   arr[index].style.left = newPos.left;
@@ -64,9 +83,12 @@ export const changePosition = (memeTexts, { index, newPos }) => {
   return [...arr];
 };
 
+let id = 0;
+
 const getNewMemeText = (e) => {
   const result = calcPos(e);
   const new_MemeText = {
+    id: id++,
     text: "text",
     style: {
       display: "block",

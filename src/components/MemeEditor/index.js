@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams, useLocation } from "react-router-dom";
-
-import domeToImage from "dom-to-image";
+import { useParams } from "react-router-dom";
 
 import styles from "./index.module.css";
 

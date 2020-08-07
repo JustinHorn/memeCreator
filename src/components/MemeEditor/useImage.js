@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default () => {
   const [image, setImage] = useState({ src: "" });
@@ -30,7 +30,7 @@ export default () => {
 
   useEffect(() => {
     resizeImg(img);
-  }, []);
+  }, [img]);
 
   const getImage = (e) => {
     const reader = new FileReader();
