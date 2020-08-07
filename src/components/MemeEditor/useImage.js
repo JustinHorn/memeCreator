@@ -30,7 +30,7 @@ export default () => {
 
   useEffect(() => {
     resizeImg(img);
-  }, []);
+  }, [img]);
 
   const getImage = (e) => {
     const reader = new FileReader();

@@ -23,7 +23,7 @@ export default ({ selectedMeme }) => {
     if (selectedMeme) {
       setImage(selectedMeme);
     }
-  }, [selectedMeme]);
+  }, [selectedMeme, setImage]);
 
   const memeImageRef = useRef();
 
