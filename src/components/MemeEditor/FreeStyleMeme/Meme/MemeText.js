@@ -3,8 +3,9 @@ import React, { useRef, useEffect, useContext } from "react";
 import { MemeTextsContext } from "../index";
 import { calcRelativePos } from "../calcPos";
 
-export default React.forwardRef(({ style, text, index }, ref) => {
-  const { changeMemeTexts, offset } = useContext(MemeTextsContext);
+export default React.forwardRef(({ element }, ref) => {
+  const { reduceMemeTexts, offset } = useContext(MemeTextsContext);
+  const { text, style, id } = element;
 
   const expandWithText = (e) => {
     const max = e.target.value
@@ -20,28 +21,34 @@ export default React.forwardRef(({ style, text, index }, ref) => {
   const onChange = (e) => {
     adjustRows(e);
     expandWithText(e);
-    changeMemeTexts({ type: "setText", newText: e.target.value, index });
+    reduceMemeTexts({ type: "setText", newText: e.target.value, id });
   };
 
   const onDrag = (e) => {
-    changeMemeTexts({
+    reduceMemeTexts({
       type: "changePosition",
-      index,
+      id,
       newPos: calcRelativePos(e, offset),
     });
   };
 
+  const focusedMemeText = useRef();
+
+  useEffect(() => {
+    focusedMemeText.current.focus();
+  }, []);
+
   return (
     <textarea
       draggable="true"
-      onFocus={() => changeMemeTexts({ type: "onFocus", index })}
+      onFocus={() => reduceMemeTexts({ type: "onFocus", id })}
       onDrag={onDrag}
       onDragEnd={onDrag}
       type="text"
       onChange={onChange}
       value={text}
       style={style}
-      ref={ref}
+      ref={focusedMemeText}
       rows="1"
       cols="4"
     />
