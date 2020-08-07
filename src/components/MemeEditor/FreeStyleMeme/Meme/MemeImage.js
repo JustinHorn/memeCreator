@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 
 import { MemeTextsContext } from "../index";
-import { changeTextStyle } from "../MemeTextState";
 
 export default ({ image, children }) => {
   const { reduceMemeTexts } = useContext(MemeTextsContext);
