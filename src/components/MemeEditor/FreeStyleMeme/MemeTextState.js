@@ -98,6 +98,7 @@ const getNewMemeText = (e) => {
       cols: "4",
       fontSize: 30,
       resize: "none",
+      borderWidth: "0px",
       borderColor: "transparent",
       backgroundColor: "transparent",
       transform: "",

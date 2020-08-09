@@ -23,7 +23,7 @@ export default ({ selectedMeme }) => {
     if (selectedMeme) {
       setImage(selectedMeme);
     }
-  }, [selectedMeme, setImage]);
+  }, [selectedMeme]);
 
   const [fontText, setFontText] = useState("");
 
