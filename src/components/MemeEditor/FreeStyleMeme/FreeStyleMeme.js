@@ -14,38 +14,30 @@ import { getTotalLocation } from "./calcPos";
 
 export const MemeTextsContext = React.createContext([]);
 
-export default ({ selectedMeme }) => {
-  const [memeTexts, reduceMemeTexts] = useMemeTextsReducer();
+export default React.forwardRef(
+  ({ selectedMeme, image, getImage, setImage }, imageNodeRef) => {
+    const [memeTexts, reduceMemeTexts] = useMemeTextsReducer();
 
-  const [image, getImage, setImage] = useImage(selectedMeme);
+    const [offset, setOffSet] = useState({
+      totalOffsetLeft: 0,
+      totalOffsetTop: 0,
+    });
 
-  useEffect(() => {
-    if (selectedMeme) {
-      setImage(selectedMeme);
-    }
-  }, [selectedMeme, setImage]);
+    useEffect(() => {
+      if (imageNodeRef.current) {
+        setOffSet(getTotalLocation(imageNodeRef.current));
+      }
+    }, [memeTexts]);
 
-  const memeImageRef = useRef();
-
-  const [offset, setOffSet] = useState({
-    totalOffsetLeft: 0,
-    totalOffsetTop: 0,
-  });
-
-  useEffect(() => {
-    if (memeImageRef.current) {
-      setOffSet(getTotalLocation(memeImageRef.current));
-    }
-  }, [memeTexts]);
-
-  return (
-    <div className={styles.bodyContainer}>
-      <MemeTextsContext.Provider
-        value={{ memeTexts: memeTexts, reduceMemeTexts, offset }}
-      >
-        <Meme ref={memeImageRef} image={image} />
-        <Options memeImageRef={memeImageRef} getImage={getImage} />
-      </MemeTextsContext.Provider>
-    </div>
-  );
-};
+    return (
+      <div className={styles.bodyContainer}>
+        <MemeTextsContext.Provider
+          value={{ memeTexts: memeTexts, reduceMemeTexts, offset }}
+        >
+          <Meme ref={imageNodeRef} image={image} />
+          <Options memeImageRef={imageNodeRef} getImage={getImage} />
+        </MemeTextsContext.Provider>
+      </div>
+    );
+  }
+);

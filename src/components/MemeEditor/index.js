@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -20,6 +20,7 @@ export default () => {
   // freestyle === FreeStyleMeme and rest can be TextImage
   const [meme, setMeme] = useState([]);
   const [selectedMeme, setSelectedMeme] = useState();
+  const [nameMeme, setNameMeme] = useState("meme");
   useEffect(() => {
     fetch(" https://api.imgflip.com/get_memes")
       .then((response) => response.json())
@@ -61,13 +62,15 @@ export default () => {
     }
   }, [selectedMeme]);
 
+  const imageNodeRef = useRef();
+
   return (
     <div className={styles.editor}>
       <Nav
         className={styles.nav}
-        image={image}
+        imageNodeRef={imageNodeRef}
         getImage={getImage}
-        setImage={setImage}
+        memeName={nameMeme}
       ></Nav>
       <div className={styles.header}>
         <h3>Make Your Own Meme! </h3>
@@ -87,15 +90,29 @@ export default () => {
           ></img>
         ))}
       </div>
+
       <div className={styles.bodyContainer}>
+        <label htmlFor="inp"> Meme Name: </label>
+        <input
+          id="inp"
+          type="text"
+          value={nameMeme}
+          onChange={(e) => {
+            setNameMeme(e.target.value);
+          }}
+        />
         {memeType === "freestyle" && (
           <FreeStyleMeme
+            ref={imageNodeRef}
+            image={image}
+            getImage={getImage}
+            setImage={setImage}
             selectedMeme={selectedMeme}
-            className={styles.buttonContainer}
           />
         )}
         {memeType !== "freestyle" && (
           <TextImage
+            ref={imageNodeRef}
             image={image}
             getImage={getImage}
             setImage={setImage}

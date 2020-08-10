@@ -12,19 +12,6 @@ export default function Options({ memeImageRef, getImage }) {
   const { memeTexts } = useContext(MemeTextsContext);
   return (
     <div className={styles.options}>
-      <button
-        className="download"
-        onClick={(e) => downloadImg(memeImageRef.current)}
-      >
-        Download Image
-      </button>
-      <input
-        id="files"
-        type="file"
-        name="load image"
-        accept="image/png, image/jpeg"
-        onChange={getImage}
-      />
       <div className={styles.memeTextsButtons}>
         {memeTexts
           .filter((x) => x.focus)

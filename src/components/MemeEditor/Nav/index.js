@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./index.module.css";
 import downloadImg from "../downloadImg";
-import memeStyles from "../TextImage/index.module.css";
-import useImage from "../useImage";
+import { Redirect } from "react-router-dom";
 
-const Nav = ({ image, getImage }) => {
+const Nav = ({ imageNodeRef, getImage, memeName }) => {
+  const [goHome, setGoHome] = useState(false);
+
   return (
     <div className={styles.navContainer}>
-      <a>Home</a>
+      {goHome && <Redirect to="/memeCreator/"></Redirect>}
+      <button onClick={() => setGoHome(!goHome)}>Home</button>
       <label htmlFor="files" className={styles.Button}>
         Upload an Image
       </label>
@@ -22,8 +24,7 @@ const Nav = ({ image, getImage }) => {
       <button
         className={styles.Button}
         onClick={() => {
-          const node = document.querySelector("." + memeStyles.memeImage);
-          downloadImg(node);
+          downloadImg(imageNodeRef.current, memeName);
         }}
       >
         Download Meme
