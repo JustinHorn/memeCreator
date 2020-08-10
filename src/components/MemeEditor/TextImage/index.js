@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import styles from "./index.module.css";
 
-import downloadImg from "../downloadImg";
+// import downloadImg from "../downloadImg";
 
 import useImage from "../useImage";
 
@@ -10,20 +10,12 @@ import FontButtons from "./FontButtons";
 
 import ColorPicker from "./ColorPicker";
 
-export default ({ selectedMeme }) => {
+export default ({ image, setImage, getImage }) => {
   const [topText, setTopText] = useState({ text: "top text", inner: true });
   const [bottomText, setBottomText] = useState({
     text: "bottom text",
     inner: true,
   });
-
-  const [image, getImage, setImage] = useImage();
-
-  useEffect(() => {
-    if (selectedMeme) {
-      setImage(selectedMeme);
-    }
-  }, [selectedMeme, setImage]);
 
   const [fontText, setFontText] = useState("");
 
@@ -91,6 +83,7 @@ export default ({ selectedMeme }) => {
           {bottomText.text}
         </div>
       </div>
+
       <div className={styles.options}>
         {/* Text Input. Top and Bottom */}
         <label htmlFor="inp" className={styles.inp}>
@@ -136,7 +129,7 @@ export default ({ selectedMeme }) => {
           bottom in/out
         </button>
 
-        <button
+        {/* <button
           className={styles.Button}
           onClick={() => {
             const node = document.querySelector("." + styles.memeImage);
@@ -145,7 +138,7 @@ export default ({ selectedMeme }) => {
           }}
         >
           Download Image
-        </button>
+        </button> */}
         <label htmlFor="files" className={styles.Button}>
           Upload an Image
         </label>
@@ -155,15 +148,15 @@ export default ({ selectedMeme }) => {
           name="load image"
           accept="image/png, image/jpeg"
           onChange={getImage}
-          style={{ visibility: "hidden" }}
+          style={{ display: "none" }}
         />
-
+      </div>
+      <div className={styles.fontStyleContainer}>
         <FontButtons
           setFont={setFontText}
           setSize={setFontSize}
           letterSize={fontSize}
         ></FontButtons>
-
         <ColorPicker setColor={setTextColor} currentColor={textColor} />
       </div>
     </div>

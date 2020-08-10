@@ -1,23 +1,26 @@
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .Button {
-  box-shadow: 0px 10px 14px -7px grey;
-  background: #403233;
-  background-color: #403233;
-  border-radius: 8px;
   display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 10px 17px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #3d768a;
-  margin-bottom: 5px;
-  max-height: 45px;
+  padding: 0.35em 1.2em;
+  border: 2px solid black;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: black;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: white;
 }
 .Button:hover {
-  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-  background-color: #37718e;
+  color: #000000;
+  background-color: lightgrey;
 }
 .Button:active {
   position: relative;

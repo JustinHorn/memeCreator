@@ -30,14 +30,13 @@ export default () => {
 
   useEffect(() => {
     resizeImg(img);
-  }, [img]);
+  }, []);
 
   const getImage = (e) => {
     const reader = new FileReader();
     reader.onload = (e) => {
-      const img = new Image();
-
       img.src = e.target.result;
+      console.log(img.height);
       resizeImg(img);
     };
     reader.readAsDataURL(e.target.files[0]);

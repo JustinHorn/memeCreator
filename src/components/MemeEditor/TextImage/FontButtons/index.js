@@ -45,24 +45,23 @@ const FontButtons = (props) => {
         >
           Cursive
         </button>
-      </div>
-
-      {/* Buttons for the size */}
-      <div className={styles.sizeButtons}>
-        <button
-          className={styles.Button}
-          onClick={() => props.setSize(props.letterSize + 1)}
-          style={{ fontSize: "15px" }}
-        >
-          A+
-        </button>
-        <button
-          className={styles.Button}
-          onClick={() => props.setSize(props.letterSize - 1)}
-          style={{ fontSize: "10px" }}
-        >
-          A-
-        </button>
+        {/* Buttons for the size */}
+        <div className={styles.sizeButtons}>
+          <button
+            className={styles.Button}
+            onClick={() => props.setSize(props.letterSize + 1)}
+            style={{ fontSize: "15px", height: "35px" }}
+          >
+            A+
+          </button>
+          <button
+            className={styles.Button}
+            onClick={() => props.setSize(props.letterSize - 1)}
+            style={{ fontSize: "10px", height: "35px" }}
+          >
+            A-
+          </button>
+        </div>
       </div>
     </div>
   );

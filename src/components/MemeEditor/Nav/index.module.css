@@ -1,0 +1,9 @@
+/* This is the css for the Nav */
+.navContainer {
+  width: 100vw;
+  height: 30px;
+  background-color: lightcoral;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

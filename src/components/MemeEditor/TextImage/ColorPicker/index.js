@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 const ColorPicker = (props) => {
   const [showColorPicker, setShowColorPicker] = useState(false);
   return (
-    <div>
+    <div className={styles.bodyContainer}>
       <button
         className={styles.Button}
         onClick={() =>
@@ -14,12 +14,15 @@ const ColorPicker = (props) => {
       >
         {showColorPicker ? "Close" : "Text Color"}
       </button>
-      {showColorPicker && (
+      <div
+        className={styles.ChromePickerContainer}
+        style={!showColorPicker ? { display: "none" } : null}
+      >
         <ChromePicker
           color={props.currentColor}
           onChange={(updatedColor) => props.setColor(updatedColor.hex)}
         />
-      )}
+      </div>
     </div>
   );
 };

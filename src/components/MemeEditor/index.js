@@ -7,9 +7,15 @@ import styles from "./index.module.css";
 import TextImage from "./TextImage";
 
 import FreeStyleMeme from "./FreeStyleMeme";
+
+import Nav from "./Nav";
+
+import useImage from "./useImage";
+
 const nums = Math.floor(Math.random() * 100);
 
 export default () => {
+  const [image, getImage, setImage] = useImage();
   const { memeType } = useParams();
   // freestyle === FreeStyleMeme and rest can be TextImage
   const [meme, setMeme] = useState([]);
@@ -18,7 +24,6 @@ export default () => {
     fetch(" https://api.imgflip.com/get_memes")
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setMeme(
           result.data.memes.map((x) => {
             const img = new Image();
@@ -49,35 +54,54 @@ export default () => {
       width: e.target.width * 5,
     });
   };
+
+  useEffect(() => {
+    if (selectedMeme) {
+      setImage(selectedMeme);
+    }
+  }, [selectedMeme]);
+
   return (
     <div className={styles.editor}>
+      <Nav
+        className={styles.nav}
+        image={image}
+        getImage={getImage}
+        setImage={setImage}
+      ></Nav>
       <div className={styles.header}>
         <h3>Make Your Own Meme! </h3>
       </div>
+      <div className={styles.egMemeContainer}>
+        {meme.slice(nums, nums + 6).map((img, i) => (
+          <img
+            key={i}
+            className={styles.imgMeme}
+            onClick={handleMemeSelector}
+            src={img.src}
+            style={{
+              width: img.width * 0.2 + "px",
+              height: img.height * 0.2 + "px",
+            }}
+            alt="img"
+          ></img>
+        ))}
+      </div>
       <div className={styles.bodyContainer}>
-        <div className={styles.egMemeContainer}>
-          {meme.slice(nums, nums + 6).map((img, i) => (
-            <img
-              key={i}
-              className={styles.imgMeme}
-              onClick={handleMemeSelector}
-              src={img.src}
-              style={{
-                width: img.width * 0.2 + "px",
-                height: img.height * 0.2 + "px",
-              }}
-              alt="img"
-            ></img>
-          ))}
-        </div>
-        <div>
-          {memeType === "freestyle" && (
-            <FreeStyleMeme selectedMeme={selectedMeme} />
-          )}
-          {memeType !== "freestyle" && (
-            <TextImage selectedMeme={selectedMeme} />
-          )}
-        </div>
+        {memeType === "freestyle" && (
+          <FreeStyleMeme
+            selectedMeme={selectedMeme}
+            className={styles.buttonContainer}
+          />
+        )}
+        {memeType !== "freestyle" && (
+          <TextImage
+            image={image}
+            getImage={getImage}
+            setImage={setImage}
+            selectedMeme={selectedMeme}
+          />
+        )}
       </div>
     </div>
   );
