@@ -18,36 +18,59 @@ export default () => {
 
   return (
     <div className={styles.component}>
-      <br />
       <nav>
-        <button>Categories</button>
-        <FireBaseSignIn />
+        <button className={styles.navButton}>
+          <span>Top/Bottom Text Meme</span>
+        </button>
+        <button className={styles.navButton}>
+          <span>FreeStyle Meme</span>
+        </button>
+        <button className={styles.navButton}>
+          <FireBaseSignIn />
+        </button>{" "}
       </nav>
-      <br />
-      <h1>Welcome to the Meme creator</h1>
-      <br />
-      <div>
+      <h1 className={styles.title}>Welcome to the Meme creator</h1>
+      <div className={styles.memeSelectionContainer}>
         <Link className={styles.linkMemeTypes} to="/memeCreator/textInOfImage">
-          Text in image
-          <img
-            className={styles.memeTypesImg}
-            src="https://i.picsum.photos/id/1011/5472/3648.jpg?hmac=Koo9845x2akkVzVFX3xxAc9BCkeGYA9VRVfLE4f0Zzk"
-            alt="funny"
-          ></img>
+          <h2>Top/Bottom Text</h2>
+          <p>
+            {" "}
+            Design a meme with a top and a Bottom text! You can custumize if the
+            text is inside or Outside the meme
+          </p>
+          <div className={styles.memeImgCont}>
+            <img
+              className={styles.memeTypesImg}
+              src={require("./memeTextInside.jpg")}
+              alt="memeTextInside"
+            ></img>
+            <img
+              className={styles.memeTypesImg}
+              src={require("./memeTextOutside.jpg")}
+              alt="memeTextOutside"
+            ></img>
+          </div>
         </Link>
         <Link className={styles.linkMemeTypes} to="/memeCreator/freestyle">
-          <h3>Editor 2</h3>
+          <h2>FreeStyle</h2>
+          <p>
+            Put your text wherever you want in the meme! Try this awesome
+            freestyle editor.
+          </p>
+
           <img
             className={styles.memeTypesImg}
-            src="https://i.picsum.photos/id/1011/5472/3648.jpg?hmac=Koo9845x2akkVzVFX3xxAc9BCkeGYA9VRVfLE4f0Zzk"
+            src={require("./memeFreestyle.jpg")}
             alt="serious"
           ></img>
         </Link>
       </div>
-      <br />
+      <h2 className={styles.titleExample}>
+        Examples Images you can use for your memes
+      </h2>
       <div className={styles.imgContainer}>
-        {meme.slice(0, 20).map((x) => (
-          <img src={x} alt="img1"></img>
+        {meme.slice(0, 9).map((x) => (
+          <img className={styles.images} src={x} alt="img1"></img>
         ))}
       </div>
     </div>

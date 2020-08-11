@@ -21,7 +21,7 @@
   grid-area: 3 / 3 / 4 / 5;
 }
 
-h3 {
+.header h3 {
   font-family: "Dancing Script", cursive;
   font-size: 40px;
 }
