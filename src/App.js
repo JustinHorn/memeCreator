@@ -10,7 +10,7 @@ import {
 import IntroPage from "components/IntroPage";
 import MemeEditor from "components/MemeEditor";
 
-import { AuthContextProvider } from "./AuthContext";
+import { AuthContextProvider } from "context/Auth";
 
 function App() {
   return (

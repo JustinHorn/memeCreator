@@ -5,17 +5,20 @@ import { auth } from "service/firebase";
 export const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [authorized, setAuthorized] = useState(false);
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     auth().onAuthStateChanged((user) => {
-      console.log("Authorized: " + (user ? true : false));
-      setAuthorized(user ? true : false);
+      setUser(user);
     });
   }, []);
 
+  const authorized = user ? true : false;
+
   return (
-    <AuthContext.Provider value={authorized}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ authorized, user }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

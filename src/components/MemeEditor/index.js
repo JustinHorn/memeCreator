@@ -101,7 +101,7 @@ export default () => {
             setNameMeme(e.target.value);
           }}
         />
-        {memeType === "freestyle" && (
+        {(memeType === "freestyle" && (
           <FreeStyleMeme
             ref={imageNodeRef}
             image={image}
@@ -109,8 +109,7 @@ export default () => {
             setImage={setImage}
             selectedMeme={selectedMeme}
           />
-        )}
-        {memeType !== "freestyle" && (
+        )) || (
           <TextImage
             ref={imageNodeRef}
             image={image}

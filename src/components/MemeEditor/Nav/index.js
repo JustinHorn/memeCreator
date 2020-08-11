@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import downloadImg from "../downloadImg";
 import { Redirect } from "react-router-dom";
+import FireBaseSignIn from "components/FireBaseSignIn";
 
 const Nav = ({ imageNodeRef, getImage, memeName }) => {
   const [goHome, setGoHome] = useState(false);
@@ -30,7 +31,7 @@ const Nav = ({ imageNodeRef, getImage, memeName }) => {
         Download Meme
       </button>
       <a>Share</a>
-      <a>Sign in</a>
+      <FireBaseSignIn />
     </div>
   );
 };

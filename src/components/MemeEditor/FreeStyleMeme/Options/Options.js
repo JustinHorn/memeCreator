@@ -8,16 +8,15 @@ import { MemeTextsContext } from "../index";
 
 import MemeTextOptions from "./MemeTextOptions";
 
-export default function Options({ memeImageRef, getImage }) {
+export default function Options() {
   const { memeTexts } = useContext(MemeTextsContext);
+
+  const memeText = memeTexts.filter((x) => x.focus)[0];
+
   return (
     <div className={styles.options}>
       <div className={styles.memeTextsButtons}>
-        {memeTexts
-          .filter((x) => x.focus)
-          .map((memeText, i) => (
-            <MemeTextOptions key={i} memeText={memeText} />
-          ))}
+        <MemeTextOptions memeText={memeText} />
       </div>
     </div>
   );
