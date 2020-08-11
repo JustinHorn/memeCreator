@@ -13,3 +13,13 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+.iconButton {
+  border: none;
+  background-color: transparent;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}

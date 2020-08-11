@@ -10,43 +10,30 @@ import FreeStyleMeme from "./FreeStyleMeme";
 
 import Nav from "./Nav";
 
-import useImage from "./useImage";
+import useImage, { resize } from "./useImage";
 
-const nums = Math.floor(Math.random() * 100);
-
-export default () => {
+const MemeEditor = () => {
   const [image, getImage, setImage] = useImage();
   const { memeType } = useParams();
   // freestyle === FreeStyleMeme and rest can be TextImage
-  const [meme, setMeme] = useState([]);
+  const [memeImages, setMemeImages] = useState([]);
   const [selectedMeme, setSelectedMeme] = useState();
   const [nameMeme, setNameMeme] = useState("meme");
   useEffect(() => {
     fetch(" https://api.imgflip.com/get_memes")
       .then((response) => response.json())
       .then((result) => {
-        setMeme(
-          result.data.memes.map((x) => {
-            const img = new Image();
-            img.src = x.url;
-            const MAX_SIZE = 500;
-            if (img.height > MAX_SIZE || img.width > MAX_SIZE) {
-              const ratio = img.height / img.width;
+        const images = result.data.memes.map((x) => {
+          const img = new Image();
+          img.src = x.url;
+          return resize(img);
+        });
 
-              if (img.height > img.width) {
-                img.height = MAX_SIZE;
-                img.width = MAX_SIZE / ratio;
-              } else {
-                img.width = MAX_SIZE;
-                img.height = MAX_SIZE * ratio;
-              }
-            }
-
-            return img;
-          })
-        ); // <-- this is an array of urls
+        setMemeImages(images);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   const handleMemeSelector = (e) => {
     setSelectedMeme({
@@ -75,22 +62,12 @@ export default () => {
       <div className={styles.header}>
         <h3>Make Your Own Meme! </h3>
       </div>
-      <div className={styles.egMemeContainer}>
-        {meme.slice(nums, nums + 6).map((img, i) => (
-          <img
-            key={i}
-            className={styles.imgMeme}
-            onClick={handleMemeSelector}
-            src={img.src}
-            style={{
-              width: img.width * 0.2 + "px",
-              height: img.height * 0.2 + "px",
-            }}
-            alt="img"
-          ></img>
-        ))}
-      </div>
-
+      {memeImages[0] && (
+        <DisplayImages
+          meme={memeImages}
+          handleMemeSelector={handleMemeSelector}
+        ></DisplayImages>
+      )}
       <div className={styles.bodyContainer}>
         <label htmlFor="inp"> Meme Name: </label>
         <input
@@ -122,3 +99,26 @@ export default () => {
     </div>
   );
 };
+
+const DisplayImages = ({ meme, handleMemeSelector }) => {
+  console.log("Meme");
+
+  console.log(meme[0]);
+  const images = meme.map((img, i) => (
+    <img
+      key={i}
+      className={styles.imgMeme}
+      onClick={handleMemeSelector}
+      src={img.src}
+      style={{
+        width: img.width * 0.2 + "px",
+        height: img.height * 0.2 + "px",
+      }}
+      alt="img"
+    ></img>
+  ));
+
+  return <div className={styles.egMemeContainer}> {images}</div>;
+};
+
+export default MemeEditor;

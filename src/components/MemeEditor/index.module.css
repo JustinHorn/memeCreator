@@ -1,7 +1,7 @@
 .editor {
-  background-color: #d9afd9;
-  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
-  width: 100vw;
+  padding-left: 10px;
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   display: grid;
   grid-template-columns: 120px 50px 1fr 200px 50px;
   grid-template-rows: 30px 100px 1fr;
@@ -28,10 +28,12 @@
 }
 .egMemeContainer {
   grid-area: 2 / 1 / 4 / 2;
-  margin-top: 50px;
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 90vh;
+  overflow-y: scroll;
 }
 
 .imgMeme {

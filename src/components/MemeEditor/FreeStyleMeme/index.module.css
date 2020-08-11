@@ -5,7 +5,7 @@
 .body {
   padding: 10px;
   display: flex;
-  background-color: #fbab7e;
+  background-color: inherit;
   align-items: center;
   font-family: "Dancing Script", cursive;
 }

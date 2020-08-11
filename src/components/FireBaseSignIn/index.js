@@ -12,19 +12,24 @@ export default () => {
     <div>
       {(authorized && (
         <span className={styles.signIn}>
-          {user.email} <button onClick={logOut}> Logout</button>{" "}
+          {user.email} <button onClick={logOut}> Logout</button>
         </span>
       )) || (
         <>
           <span>Sign in with </span>
-          <button onClick={signInWithGoogle}>
+          <button className={styles.iconButton} onClick={signInWithGoogle}>
             <img
+              className={styles.icon}
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
               alt="Google"
             ></img>
           </button>
-          <button onClick={signInWithGitHub}>
-            <img src={require("./GitHub.png")} alt="github"></img>
+          <button className={styles.iconButton} onClick={signInWithGitHub}>
+            <img
+              className={styles.icon}
+              src={"/memeCreator/src/icon/gitHub.png"}
+              alt="github"
+            ></img>
           </button>
         </>
       )}

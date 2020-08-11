@@ -7,18 +7,7 @@ export default () => {
 
   const resizeImg = (img) => {
     setTimeout(() => {
-      const MAX_SIZE = 500;
-      if (img.height > MAX_SIZE || img.width > MAX_SIZE) {
-        const ratio = img.height / img.width;
-
-        if (img.height > img.width) {
-          img.height = MAX_SIZE;
-          img.width = MAX_SIZE / ratio;
-        } else {
-          img.width = MAX_SIZE;
-          img.height = MAX_SIZE * ratio;
-        }
-      }
+      img = resize(img);
       setTimeout(() => {
         setImage(img);
       }, 0);
@@ -42,4 +31,20 @@ export default () => {
     reader.readAsDataURL(e.target.files[0]);
   };
   return [image, getImage, setImage];
+};
+
+export const resize = (img) => {
+  const MAX_SIZE = 500;
+  if (img.height > MAX_SIZE || img.width > MAX_SIZE) {
+    const ratio = img.height / img.width;
+
+    if (img.height > img.width) {
+      img.height = MAX_SIZE;
+      img.width = MAX_SIZE / ratio;
+    } else {
+      img.width = MAX_SIZE;
+      img.height = MAX_SIZE * ratio;
+    }
+  }
+  return img;
 };
