@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { signInWithGoogle, signInWithGitHub } from "service/firebase";
+import { logOut, signInWithGoogle, signInWithGitHub } from "service/firebase";
 
 import { AuthContext } from "context/Auth";
 export default () => {
@@ -8,7 +8,11 @@ export default () => {
 
   return (
     <div>
-      {(authorized && <span>signed in with {user.email} </span>) || (
+      {(authorized && (
+        <span>
+          signed in with {user.email} <button onClick={logOut}> Logout</button>{" "}
+        </span>
+      )) || (
         <>
           <span>Sign in with </span>
           <button onClick={signInWithGoogle}> Google </button>

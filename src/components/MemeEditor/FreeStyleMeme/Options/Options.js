@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 
 import styles from "./index.module.css";
 
-import downloadImg from "../../downloadImg";
-
 import { MemeTextsContext } from "../index";
 
 import MemeTextOptions from "./MemeTextOptions";
+
+import PaddingOption from "./PaddingOption";
 
 export default function Options() {
   const { memeTexts } = useContext(MemeTextsContext);
@@ -15,9 +15,11 @@ export default function Options() {
 
   return (
     <div className={styles.options}>
+      <PaddingOption topOrBottom={"top"} />
       <div className={styles.memeTextsButtons}>
         <MemeTextOptions memeText={memeText} />
       </div>
+      <PaddingOption topOrBottom={"bottom"} />
     </div>
   );
 }

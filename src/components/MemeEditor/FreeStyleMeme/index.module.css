@@ -1,5 +1,11 @@
 .bodyContainer {
   display: flex;
-  background-color: gold;
+}
+
+.body {
+  padding: 10px;
+  display: flex;
+  background-color: #fbab7e;
   align-items: center;
+  font-family: "Dancing Script", cursive;
 }

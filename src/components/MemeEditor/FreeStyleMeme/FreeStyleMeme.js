@@ -21,14 +21,30 @@ export default React.forwardRef(({ image }, imageNodeRef) => {
 
   useHandleUnAuthorized(memeTexts, reduceMemeTexts);
 
+  const [space, setSpace] = useState({
+    top: "0",
+    topColor: "white",
+    bottom: "0",
+    bottomColor: "white",
+  });
+
   return (
     <div className={styles.bodyContainer}>
-      <MemeTextsContext.Provider
-        value={{ memeTexts: memeTexts, reduceMemeTexts, offset }}
-      >
-        <Meme ref={imageNodeRef} image={image} />
-        <Options memeImageRef={imageNodeRef} />
-      </MemeTextsContext.Provider>
+      <div className={styles.body}>
+        <MemeTextsContext.Provider
+          value={{
+            space,
+            setSpace,
+            memeTexts: memeTexts,
+            reduceMemeTexts,
+            offset,
+          }}
+        >
+          <Meme ref={imageNodeRef} image={image} />
+          <Options memeImageRef={imageNodeRef} />
+        </MemeTextsContext.Provider>
+      </div>
+      <div></div>
     </div>
   );
 });

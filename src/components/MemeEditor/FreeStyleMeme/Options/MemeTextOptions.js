@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
-import styles from "./index.module.css";
+import styles from "./memeOptions.module.css";
 
-import { MemeTextsContext } from "../../index";
+import { MemeTextsContext } from "../index";
 
 export default ({ memeText }) => {
   const { reduceMemeTexts } = useContext(MemeTextsContext);
@@ -43,12 +43,14 @@ export default ({ memeText }) => {
           "fontSize",
           "transform",
           "textTransform",
+          "fontFamily",
         ].map((propName, i) => (
-          <div key={i}>
+          <div key={i} className={styles.cssOption}>
             <label htmlFor={i + "propName"}> {propName}</label>
             <br />
             <input
               id={i + "propName"}
+              className={styles.cssOptionInput}
               value={memeText && memeText.style[propName]}
               onChange={onPropChange(propName)}
             />

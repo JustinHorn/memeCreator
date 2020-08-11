@@ -1,0 +1,31 @@
+.headline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.removeButton {
+  width: inherit;
+  height: inherit;
+  max-width: 30px;
+  max-height: 30px;
+  background-color: inherit;
+  background-blend-mode: saturation;
+}
+
+.opacity {
+  opacity: 0.5;
+}
+
+.cssOption {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.cssOptionInput {
+  margin-top: 5px;
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  border-radius: 50%;
+  border-color: green;
+  background-color: inherit;
+}
