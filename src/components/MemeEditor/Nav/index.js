@@ -10,10 +10,12 @@ const Nav = ({ imageNodeRef, getImage, memeName }) => {
   return (
     <div className={styles.navContainer}>
       {goHome && <Redirect to="/memeCreator/"></Redirect>}
-      <button onClick={() => setGoHome(!goHome)}>Home</button>
-      <label htmlFor="files" className={styles.Button}>
-        Upload an Image
-      </label>
+      <button className={styles.navButton} onClick={() => setGoHome(!goHome)}>
+        Home
+      </button>
+      <button className={styles.navButton}>
+        <label htmlFor="files">Upload an Image</label>
+      </button>
       <input
         id="files"
         type="file"
@@ -23,14 +25,14 @@ const Nav = ({ imageNodeRef, getImage, memeName }) => {
         style={{ display: "none" }}
       />
       <button
-        className={styles.Button}
+        className={styles.navButton}
         onClick={() => {
           downloadImg(imageNodeRef.current, memeName);
         }}
       >
         Download Meme
       </button>
-      <a>Share</a>
+      <button className={styles.navButton}>Share</button>
       <FireBaseSignIn />
     </div>
   );

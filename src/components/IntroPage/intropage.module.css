@@ -17,10 +17,10 @@
 nav {
   position: fixed;
   background: rgba(0, 0, 0, 0.05);
-  width: 95vw;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
-  padding: 10px 40px;
+  align-items: center;
 }
 
 .navButton {
@@ -34,6 +34,7 @@ nav {
   position: relative;
   z-index: 0;
   border-radius: 10px;
+  margin: 5px 0px;
 }
 
 .navButton:before {
