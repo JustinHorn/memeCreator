@@ -29,3 +29,8 @@ nav {
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 10px;
 }
+
+.memeTypesImg {
+  width: 60px;
+  height: 60px;
+}
