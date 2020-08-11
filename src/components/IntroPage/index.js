@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./intropage.module.css";
 
+import FireBaseSignIn from "components/FireBaseSignIn";
+
 export default () => {
   const [meme, setMeme] = useState([]);
   useEffect(() => {
@@ -19,7 +21,7 @@ export default () => {
       <br />
       <nav>
         <button>Categories</button>
-        <button>Sign In</button>{" "}
+        <FireBaseSignIn />
       </nav>
       <br />
       <h1>Welcome to the Meme creator</h1>

@@ -7,24 +7,28 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import IntroPage from "./components/IntroPage";
-import MemeEditor from "./components/MemeEditor";
+import IntroPage from "components/IntroPage";
+import MemeEditor from "components/MemeEditor";
+
+import { AuthContextProvider } from "./AuthContext";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/memeCreator/:memeType">
-          <MemeEditor />
-        </Route>
-        <Route path="/memeCreator">
-          <IntroPage />
-        </Route>
-        <Route path="*">
-          <Redirect to="/memeCreator"></Redirect>
-        </Route>
-      </Switch>
-    </Router>
+    <AuthContextProvider>
+      <Router>
+        <Switch>
+          <Route path="/memeCreator/:memeType">
+            <MemeEditor />
+          </Route>
+          <Route path="/memeCreator">
+            <IntroPage />
+          </Route>
+          <Route path="*">
+            <Redirect to="/memeCreator"></Redirect>
+          </Route>
+        </Switch>
+      </Router>
+    </AuthContextProvider>
   );
 }
 

@@ -46,6 +46,7 @@ export default React.forwardRef(
     return (
       <div className={styles.bodyContainer}>
         <div
+          ref={imageNodeRef}
           className={styles.memeContainer}
           style={{
             height: image.height + "px",
@@ -59,7 +60,7 @@ export default React.forwardRef(
             {topText.text}
           </div>
 
-          <MemeImage ref={imageNodeRef} image={image} onClick={() => {}}>
+          <MemeImage image={image} onClick={() => {}}>
             <div
               style={getInnerStyle(topText, fontText, fontSize)}
               className={styles.textTop}
