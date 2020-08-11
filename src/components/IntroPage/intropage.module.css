@@ -21,11 +21,17 @@ nav {
 }
 
 .imgContainer {
-  background-color: lightgoldenrodyellow;
   display: grid;
   max-width: 60%;
   max-height: 60%;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
   grid-gap: 10px;
+}
+
+.images {
+  justify-self: center;
+  align-self: center;
+  max-height: 200px;
+  max-width: 200px;
 }

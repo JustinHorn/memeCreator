@@ -29,8 +29,8 @@ export default () => {
       </Link>
       <br />
       <div className={styles.imgContainer}>
-        {meme.slice(0, 20).map((x) => (
-          <img src={x} alt="img1"></img>
+        {meme.slice(0, 9).map((x) => (
+          <img className={styles.images} src={x} alt="img1"></img>
         ))}
       </div>
     </div>
