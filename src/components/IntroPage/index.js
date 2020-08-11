@@ -19,22 +19,23 @@ export default () => {
   return (
     <div className={styles.component}>
       <nav>
-        <button className={styles.navButton}>
-          <span>Top/Bottom Text Meme</span>
-        </button>
-        <button className={styles.navButton}>
-          <span>FreeStyle Meme</span>
-        </button>
-        <button className={styles.navButton}>
-          <FireBaseSignIn />
-        </button>{" "}
+        <Link to="/memeCreator/textInOfImage">
+          <button className={styles.navButton}>
+            <span>Top/Bottom Text Meme</span>
+          </button>
+        </Link>
+        <Link to="/memeCreator/freestyle">
+          <button className={styles.navButton}>
+            <span>FreeStyle Meme</span>
+          </button>
+        </Link>
+        <FireBaseSignIn />
       </nav>
       <h1 className={styles.title}>Welcome to the Meme creator</h1>
       <div className={styles.memeSelectionContainer}>
         <Link className={styles.linkMemeTypes} to="/memeCreator/textInOfImage">
           <h2>Top/Bottom Text</h2>
           <p>
-            {" "}
             Design a meme with a top and a Bottom text! You can custumize if the
             text is inside or Outside the meme
           </p>

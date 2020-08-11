@@ -1,0 +1,15 @@
+.signInContainer button {
+  border: none;
+  background-color: rgb(0, 0, 0, 0.01);
+}
+
+.signInContainer img {
+  padding: 1px;
+  height: 15px;
+  width: 15px;
+}
+
+.signIn {
+  font-size: 18px;
+  font-weight: bold;
+}
