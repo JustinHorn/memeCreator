@@ -1,22 +1,25 @@
 {
   "files": {
-    "main.css": "/memeCreator/static/css/main.87b014b9.chunk.css",
-    "main.js": "/memeCreator/static/js/main.3b619872.chunk.js",
-    "main.js.map": "/memeCreator/static/js/main.3b619872.chunk.js.map",
+    "main.css": "/memeCreator/static/css/main.d605c621.chunk.css",
+    "main.js": "/memeCreator/static/js/main.74ea73d6.chunk.js",
+    "main.js.map": "/memeCreator/static/js/main.74ea73d6.chunk.js.map",
     "runtime-main.js": "/memeCreator/static/js/runtime-main.3c140523.js",
     "runtime-main.js.map": "/memeCreator/static/js/runtime-main.3c140523.js.map",
-    "static/js/2.ed52d744.chunk.js": "/memeCreator/static/js/2.ed52d744.chunk.js",
-    "static/js/2.ed52d744.chunk.js.map": "/memeCreator/static/js/2.ed52d744.chunk.js.map",
+    "static/js/2.17d73312.chunk.js": "/memeCreator/static/js/2.17d73312.chunk.js",
+    "static/js/2.17d73312.chunk.js.map": "/memeCreator/static/js/2.17d73312.chunk.js.map",
     "index.html": "/memeCreator/index.html",
-    "precache-manifest.c21bec9efe0daa7e6509be8f1e176771.js": "/memeCreator/precache-manifest.c21bec9efe0daa7e6509be8f1e176771.js",
+    "precache-manifest.28645b627a25e95eb677fb57edbe4b48.js": "/memeCreator/precache-manifest.28645b627a25e95eb677fb57edbe4b48.js",
     "service-worker.js": "/memeCreator/service-worker.js",
-    "static/css/main.87b014b9.chunk.css.map": "/memeCreator/static/css/main.87b014b9.chunk.css.map",
-    "static/js/2.ed52d744.chunk.js.LICENSE.txt": "/memeCreator/static/js/2.ed52d744.chunk.js.LICENSE.txt"
+    "static/css/main.d605c621.chunk.css.map": "/memeCreator/static/css/main.d605c621.chunk.css.map",
+    "static/js/2.17d73312.chunk.js.LICENSE.txt": "/memeCreator/static/js/2.17d73312.chunk.js.LICENSE.txt",
+    "static/media/memeFreestyle.jpg": "/memeCreator/static/media/memeFreestyle.8d5a158d.jpg",
+    "static/media/memeTextInside.jpg": "/memeCreator/static/media/memeTextInside.acf0d59b.jpg",
+    "static/media/memeTextOutside.jpg": "/memeCreator/static/media/memeTextOutside.92bae5a2.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.3c140523.js",
-    "static/js/2.ed52d744.chunk.js",
-    "static/css/main.87b014b9.chunk.css",
-    "static/js/main.3b619872.chunk.js"
+    "static/js/2.17d73312.chunk.js",
+    "static/css/main.d605c621.chunk.css",
+    "static/js/main.74ea73d6.chunk.js"
   ]
 }
