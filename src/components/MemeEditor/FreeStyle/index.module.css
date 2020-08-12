@@ -14,9 +14,14 @@
   justify-content: center;
 }
 
+@media only screen and (max-width: 768px) {
+  .body {
+    margin-top: 30px;
+    flex-direction: column;
+  }
+}
+
 .body {
-  padding: 10px;
-  padding-bottom: 0;
   display: flex;
   background-color: inherit;
   align-items: center;

@@ -10,7 +10,6 @@ export default () => {
     fetch(" https://api.imgflip.com/get_memes")
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setMeme(result.data.memes.map((x) => x.url)); // <-- this is an array of urls
       })
       .catch((error) => {});

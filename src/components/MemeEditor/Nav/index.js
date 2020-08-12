@@ -32,7 +32,6 @@ const Nav = ({ imageNodeRef, getImage, memeName }) => {
       >
         Download Meme
       </button>
-      <button className={styles.navButton}>Share</button>
       <FireBaseSignIn />
     </div>
   );
