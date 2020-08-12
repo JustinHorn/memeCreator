@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+const angryImgSrc = "/memeCreator/images/AngrySection.jpeg";
+
+const angryImg = new Image();
+angryImg.src = angryImgSrc;
 
 export default () => {
-  const [image, setImage] = useState({ src: "" });
-
-  const angryImg = "/memeCreator/images/AngrySection.jpeg";
+  const [image, setImage] = useState(angryImg);
 
   const resizeImg = (img) => {
     setTimeout(() => {
@@ -14,27 +17,20 @@ export default () => {
     });
   };
 
-  const img = new Image();
-  img.src = angryImg;
-
-  useEffect(() => {
-    resizeImg(img);
-  }, []);
-
   const getImage = (e) => {
     const reader = new FileReader();
     reader.onload = (e) => {
+      const img = new Image();
       img.src = e.target.result;
-      console.log(img.height);
       resizeImg(img);
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  return [image, getImage, setImage];
+  return { image, getImage, setImage, resizeImg };
 };
 
-export const resize = (img) => {
-  const MAX_SIZE = 500;
+export const resize = (img, MAX) => {
+  const MAX_SIZE = MAX || 500;
   if (img.height > MAX_SIZE || img.width > MAX_SIZE) {
     const ratio = img.height / img.width;
 
@@ -46,5 +42,6 @@ export const resize = (img) => {
       img.height = MAX_SIZE * ratio;
     }
   }
+
   return img;
 };

@@ -6,49 +6,25 @@ import styles from "./index.module.css";
 
 import TextImage from "./TextImage";
 
-import FreeStyleMeme from "./FreeStyleMeme";
+import FreeStyle from "./FreeStyle";
 
 import Nav from "./Nav";
 
 import useImage, { resize } from "./useImage";
 
 const MemeEditor = () => {
-  const [image, getImage, setImage] = useImage();
+  const { image, getImage, resizeImg } = useImage();
   const { memeType } = useParams();
-  // freestyle === FreeStyleMeme and rest can be TextImage
-  const [memeImages, setMemeImages] = useState([]);
-  const [selectedMeme, setSelectedMeme] = useState();
-  const [nameMeme, setNameMeme] = useState("meme");
-  useEffect(() => {
-    fetch(" https://api.imgflip.com/get_memes")
-      .then((response) => response.json())
-      .then((result) => {
-        const images = result.data.memes.map((x) => {
-          const img = new Image();
-          img.src = x.url;
-          return resize(img);
-        });
 
-        setMemeImages(images);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const [nameMeme, setNameMeme] = useState("meme");
+
   const handleMemeSelector = (e) => {
-    setSelectedMeme({
+    resizeImg({
       src: e.target.src,
-      height: e.target.height * 5,
-      width: e.target.width * 5,
+      height: e.target.height * 100,
+      width: e.target.width * 100,
     });
   };
-
-  useEffect(() => {
-    if (selectedMeme) {
-      setImage(selectedMeme);
-    }
-  }, [selectedMeme]);
-
   const imageNodeRef = useRef();
 
   return (
@@ -58,16 +34,12 @@ const MemeEditor = () => {
         imageNodeRef={imageNodeRef}
         getImage={getImage}
         memeName={nameMeme}
-      ></Nav>
+      />
+
       <div className={styles.header}>
         <h3>Make Your Own Meme! </h3>
       </div>
-      {memeImages[0] && (
-        <DisplayImages
-          meme={memeImages}
-          handleMemeSelector={handleMemeSelector}
-        ></DisplayImages>
-      )}
+      <DisplayImages handleMemeSelector={handleMemeSelector} />
       <div className={styles.bodyContainer}>
         <label htmlFor="inp"> Meme Name: </label>
         <input
@@ -79,44 +51,51 @@ const MemeEditor = () => {
           }}
         />
         {(memeType === "freestyle" && (
-          <FreeStyleMeme
-            ref={imageNodeRef}
-            image={image}
-            getImage={getImage}
-            setImage={setImage}
-            selectedMeme={selectedMeme}
-          />
-        )) || (
-          <TextImage
-            ref={imageNodeRef}
-            image={image}
-            getImage={getImage}
-            setImage={setImage}
-            selectedMeme={selectedMeme}
-          />
-        )}
+          <FreeStyle ref={imageNodeRef} image={image} />
+        )) || <TextImage ref={imageNodeRef} image={image} />}
       </div>
     </div>
   );
 };
 
 const DisplayImages = ({ meme, handleMemeSelector }) => {
-  console.log("Meme");
+  const [memeImages, setMemeImages] = useState([]);
 
-  console.log(meme[0]);
-  const images = meme.map((img, i) => (
+  useEffect(() => {
+    fetch(" https://api.imgflip.com/get_memes")
+      .then((response) => response.json())
+      .then((result) => {
+        setTimeout(() => {
+          const images = result.data.memes.map((x) => {
+            const img = new Image();
+            img.src = x.url;
+            console.log(x.url);
+            return resize(img, 100);
+          });
+
+          setMemeImages(images);
+        }, 0);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const images = memeImages.map((img, i) => (
     <img
       key={i}
       className={styles.imgMeme}
       onClick={handleMemeSelector}
       src={img.src}
       style={{
-        width: img.width * 0.2 + "px",
-        height: img.height * 0.2 + "px",
+        width: img.width + "px",
+        height: img.height + "px",
       }}
       alt="img"
-    ></img>
+    />
   ));
+
+  memeImages.forEach((img) => console.log(img.height));
 
   return <div className={styles.egMemeContainer}> {images}</div>;
 };
