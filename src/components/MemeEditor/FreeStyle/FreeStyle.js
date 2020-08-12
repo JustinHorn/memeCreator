@@ -14,22 +14,22 @@ import { AuthContext } from "context/Auth";
 
 export const MemeTextsContext = React.createContext([]);
 
-export default React.forwardRef(({ image }, imageNodeRef) => {
-  const [memeTexts, reduceMemeTexts] = useMemeTextsReducer();
+export default React.forwardRef(
+  ({ image, setMemeName, memeName }, imageNodeRef) => {
+    const [memeTexts, reduceMemeTexts] = useMemeTextsReducer();
 
-  const offset = useUpdatedOffset(memeTexts, imageNodeRef);
+    const offset = useUpdatedOffset(memeTexts, imageNodeRef);
 
-  useHandleUnAuthorized(memeTexts, reduceMemeTexts);
+    useHandleUnAuthorized(memeTexts, reduceMemeTexts);
 
-  const [space, setSpace] = useState({
-    top: "0",
-    topColor: "white",
-    bottom: "0",
-    bottomColor: "white",
-  });
+    const [space, setSpace] = useState({
+      top: "0",
+      topColor: "white",
+      bottom: "0",
+      bottomColor: "white",
+    });
 
-  return (
-    <div className={styles.bodyContainer}>
+    return (
       <div className={styles.body}>
         <MemeTextsContext.Provider
           value={{
@@ -40,14 +40,20 @@ export default React.forwardRef(({ image }, imageNodeRef) => {
             offset,
           }}
         >
-          <Meme ref={imageNodeRef} image={image} />
-          <Options memeImageRef={imageNodeRef} />
+          <div className={styles.secondFlex}>
+            <Meme ref={imageNodeRef} image={image} />
+          </div>
+          <Options
+            className={styles.fistFlex}
+            memeImageRef={imageNodeRef}
+            setMemeName={setMemeName}
+            memeName={memeName}
+          />
         </MemeTextsContext.Provider>
       </div>
-      <div></div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 const useHandleUnAuthorized = (memeTexts, reduceMemeTexts) => {
   const { authorized } = useContext(AuthContext);

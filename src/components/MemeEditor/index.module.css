@@ -3,37 +3,62 @@
   background-color: #fbab7e;
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   display: grid;
-  grid-template-columns: 120px 50px 1fr 200px 50px;
-  grid-template-rows: 30px 100px 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-template-columns: 3fr 6fr;
+  grid-template-rows: 10px 5fr;
+
+  min-height: 100vh;
+  grid-template-areas:
+    "nav nav "
+    "memeImages editor";
+}
+
+@media only screen and (max-width: 768px) {
+  .editor {
+    grid-template-columns: 1fr;
+    grid-template-rows: 10px auto auto;
+
+    min-height: 100vh;
+    grid-template-areas:
+      "nav"
+      "editor"
+      "memeImages";
+  }
 }
 
 .nav {
-  grid-area: 1 / 1 / 2 / 5;
-}
-
-.header {
-  grid-area: 2 / 3 / 3 / 4;
-  justify-self: center;
+  grid-area: nav;
 }
 
 .bodyContainer {
-  grid-area: 3 / 3 / 4 / 5;
+  grid-area: editor;
 }
 
 .header h3 {
   font-family: "Dancing Script", cursive;
   font-size: 40px;
 }
+
 .egMemeContainer {
-  grid-area: 2 / 1 / 4 / 2;
+  grid-area: memeImages;
   margin-top: 5vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-height: 90vh;
+
+  width: 80%;
+  padding: 10%;
+  max-height: 80vh;
+
+  overflow: hidden;
+}
+
+.egMemeContainerChild {
+  box-sizing: content-box; /* So the width will be 100% + 17px */
+
+  width: 100%;
+  height: 100%;
+  padding-right: 30%;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .imgMeme {

@@ -9,9 +9,9 @@ export default () => {
   const { authorized, user } = useContext(AuthContext);
 
   return (
-    <div>
+    <div className={styles.body}>
       {(authorized && (
-        <span className={styles.signIn}>
+        <span>
           {user.email} <button onClick={logOut}> Logout</button>
         </span>
       )) || (

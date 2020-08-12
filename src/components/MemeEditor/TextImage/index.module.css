@@ -1,6 +1,7 @@
 /* This is the css for the Container that have the meme and the Buttons with the text */
 
 .bodyContainer {
+  margin-top: 80px;
   min-height: 550px;
   display: grid;
   grid-template-columns: 1fr 200px 250px;
@@ -46,6 +47,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.options * {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .styleOptions {
@@ -138,4 +144,12 @@
   background: rgba(0, 0, 0, 0.05);
   outline: none;
   box-shadow: inset 0 -2px 0 black;
+}
+
+@media only screen and (max-width: 938px) {
+  .bodyContainer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+  }
 }

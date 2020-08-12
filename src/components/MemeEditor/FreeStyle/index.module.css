@@ -1,9 +1,22 @@
 .bodyContainer {
+  width: 100%;
+}
+
+.fistFlex {
+  flex-grow: 1;
+}
+
+.secondFlex {
+  flex-grow: 5;
+
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .body {
   padding: 10px;
+  padding-bottom: 0;
   display: flex;
   background-color: inherit;
   align-items: center;

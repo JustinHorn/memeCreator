@@ -3,15 +3,31 @@
   background-color: rgb(0, 0, 0, 0.01);
 }
 
+.body {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .body {
+    font-size: 10px;
+  }
+
+  .icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .body {
+    font-size: 7.5px;
+  }
+}
+
 .signInContainer img {
   padding: 1px;
   height: 15px;
   width: 15px;
-}
-
-.signIn {
-  font-size: 18px;
-  font-weight: bold;
 }
 
 .iconButton {

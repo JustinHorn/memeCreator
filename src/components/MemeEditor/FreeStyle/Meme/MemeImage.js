@@ -17,6 +17,7 @@ export default ({ image, children }) => {
       }}
     >
       <div
+        style={{ width: "inherit", height: "inherit" }}
         onClick={(event) => {
           reduceMemeTexts({
             type: "addText",
@@ -27,7 +28,6 @@ export default ({ image, children }) => {
             },
           });
         }}
-        style={{ width: "inherit", height: "inherit" }}
       ></div>
       {children}
     </div>

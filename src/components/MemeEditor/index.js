@@ -16,7 +16,7 @@ const MemeEditor = () => {
   const { image, getImage, resizeImg } = useImage();
   const { memeType } = useParams();
 
-  const [nameMeme, setNameMeme] = useState("meme");
+  const [memeName, setMemeName] = useState("meme");
 
   const handleMemeSelector = (e) => {
     resizeImg({
@@ -27,38 +27,40 @@ const MemeEditor = () => {
   };
   const imageNodeRef = useRef();
 
+  document.title = "Make Your Own Meme!";
+
   return (
     <div className={styles.editor}>
       <Nav
         className={styles.nav}
         imageNodeRef={imageNodeRef}
         getImage={getImage}
-        memeName={nameMeme}
+        memeName={memeName}
       />
 
-      <div className={styles.header}>
-        <h3>Make Your Own Meme! </h3>
-      </div>
       <DisplayImages handleMemeSelector={handleMemeSelector} />
       <div className={styles.bodyContainer}>
-        <label htmlFor="inp"> Meme Name: </label>
-        <input
-          id="inp"
-          type="text"
-          value={nameMeme}
-          onChange={(e) => {
-            setNameMeme(e.target.value);
-          }}
-        />
         {(memeType === "freestyle" && (
-          <FreeStyle ref={imageNodeRef} image={image} />
-        )) || <TextImage ref={imageNodeRef} image={image} />}
+          <FreeStyle
+            ref={imageNodeRef}
+            setMemeName={setMemeName}
+            memeName={memeName}
+            image={image}
+          />
+        )) || (
+          <TextImage
+            ref={imageNodeRef}
+            setMemeName={setMemeName}
+            memeName={memeName}
+            image={image}
+          />
+        )}
       </div>
     </div>
   );
 };
 
-const DisplayImages = ({ meme, handleMemeSelector }) => {
+const DisplayImages = ({ handleMemeSelector }) => {
   const [memeImages, setMemeImages] = useState([]);
 
   useEffect(() => {
@@ -69,7 +71,6 @@ const DisplayImages = ({ meme, handleMemeSelector }) => {
           const images = result.data.memes.map((x) => {
             const img = new Image();
             img.src = x.url;
-            console.log(x.url);
             return resize(img, 100);
           });
 
@@ -95,9 +96,11 @@ const DisplayImages = ({ meme, handleMemeSelector }) => {
     />
   ));
 
-  memeImages.forEach((img) => console.log(img.height));
-
-  return <div className={styles.egMemeContainer}> {images}</div>;
+  return (
+    <div className={styles.egMemeContainer}>
+      <div className={styles.egMemeContainerChild}> {images}</div>
+    </div>
+  );
 };
 
 export default MemeEditor;

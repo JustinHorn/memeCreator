@@ -17,7 +17,7 @@ export default ({ topOrBottom }) => {
 
   return (
     <div className={styles.cssOption}>
-      Set top padding
+      Set {topOrBottom} padding
       <br />
       <input
         type="range"

@@ -7,7 +7,7 @@ import styles from "./index.module.css";
 import MemeText from "./MemeText";
 import MemeImage from "./MemeImage";
 
-export default React.forwardRef(({ onImageClick, image }, ref) => {
+export default React.forwardRef(({ image, className }, ref) => {
   const { memeTexts, space } = useContext(MemeTextsContext);
 
   const MemeTexts = memeTexts.map((element, i) => (
@@ -24,9 +24,9 @@ export default React.forwardRef(({ onImageClick, image }, ref) => {
   };
 
   return (
-    <div ref={ref} className={styles.meme} onClick={onImageClick}>
+    <div ref={ref} className={styles.meme + " " + className}>
       <div style={padTop}></div>
-      <MemeImage image={image}>{MemeTexts}</MemeImage>
+      <MemeImage image={image}> {MemeTexts}</MemeImage>
       <div style={padBottom}></div>
     </div>
   );
