@@ -1,5 +1,7 @@
 .component {
   width: 100vw;
+  padding: 0;
+  margin: 0;
   text-align: center;
   display: flex;
   align-items: center;
@@ -155,6 +157,8 @@ h2 {
 
 .titleExample {
   margin-top: 50px;
+  padding: 0%;
+  width: 90%;
 }
 
 .imgContainer {

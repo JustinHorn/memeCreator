@@ -14,21 +14,23 @@ import { AuthContextProvider } from "context/Auth";
 
 function App() {
   return (
-    <AuthContextProvider>
-      <Router>
-        <Switch>
-          <Route path="/:memeType">
-            <MemeEditor />
-          </Route>
-          <Route path="/">
-            <IntroPage />
-          </Route>
-          <Route path="*">
-            <Redirect to="/"></Redirect>
-          </Route>
-        </Switch>
-      </Router>
-    </AuthContextProvider>
+    <div className="App">
+      <AuthContextProvider>
+        <Router>
+          <Switch>
+            <Route path="/:memeType">
+              <MemeEditor />
+            </Route>
+            <Route path="/">
+              <IntroPage />
+            </Route>
+            <Route path="*">
+              <Redirect to="/"></Redirect>
+            </Route>
+          </Switch>
+        </Router>
+      </AuthContextProvider>
+    </div>
   );
 }
 
