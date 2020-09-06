@@ -30,7 +30,8 @@ export default () => {
 };
 
 export const resize = (img, MAX) => {
-  const MAX_SIZE = MAX || 500;
+  const MAX_SIZE = MAX || Math.min(500, window.innerWidth);
+
   if (img.height > MAX_SIZE || img.width > MAX_SIZE) {
     const ratio = img.height / img.width;
 

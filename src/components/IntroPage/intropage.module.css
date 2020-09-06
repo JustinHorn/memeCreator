@@ -24,7 +24,6 @@ nav {
 }
 
 .navButton {
-  width: 170px;
   height: 35px;
   border: none;
   outline: none;
@@ -140,7 +139,7 @@ h2 {
 
 .linkMemeTypes p {
   font-size: 20px;
-  width: 600px;
+  max-width: 70ch;
 }
 
 .memeTypesImg {
@@ -160,12 +159,13 @@ h2 {
 
 .imgContainer {
   margin-top: 30px;
-  display: grid;
   max-width: 60%;
   max-height: 60%;
-  grid-template-columns: repeat(3, 200px);
-  grid-template-rows: repeat(3, 200px);
+
   grid-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
 }
 
 .images {
@@ -178,4 +178,9 @@ h2 {
 
 .memeTypesImg {
   max-width: 200px;
+}
+
+.p {
+  width: 100%;
+  max-width: 100%;
 }

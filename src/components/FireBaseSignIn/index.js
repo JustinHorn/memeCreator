@@ -27,7 +27,7 @@ export default () => {
           <button className={styles.iconButton} onClick={signInWithGitHub}>
             <img
               className={styles.icon}
-              src={"/memeCreator/src/icon/gitHub.png"}
+              src={"/src/icon/gitHub.png"}
               alt="github"
             ></img>
           </button>

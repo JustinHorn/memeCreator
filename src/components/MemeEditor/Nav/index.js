@@ -9,7 +9,7 @@ const Nav = ({ imageNodeRef, getImage, memeName }) => {
 
   return (
     <div className={styles.navContainer}>
-      {goHome && <Redirect to="/memeCreator/"></Redirect>}
+      {goHome && <Redirect to="/"></Redirect>}
       <button className={styles.navButton} onClick={() => setGoHome(!goHome)}>
         Home
       </button>

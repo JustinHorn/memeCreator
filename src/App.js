@@ -17,14 +17,14 @@ function App() {
     <AuthContextProvider>
       <Router>
         <Switch>
-          <Route path="/memeCreator/:memeType">
+          <Route path="/:memeType">
             <MemeEditor />
           </Route>
-          <Route path="/memeCreator">
+          <Route path="/">
             <IntroPage />
           </Route>
           <Route path="*">
-            <Redirect to="/memeCreator"></Redirect>
+            <Redirect to="/"></Redirect>
           </Route>
         </Switch>
       </Router>

@@ -82,19 +82,24 @@ const DisplayImages = ({ handleMemeSelector }) => {
       });
   }, []);
 
-  const images = memeImages.map((img, i) => (
-    <img
-      key={i}
-      className={styles.imgMeme}
-      onClick={handleMemeSelector}
-      src={img.src}
-      style={{
-        width: img.width + "px",
-        height: img.height + "px",
-      }}
-      alt="img"
-    />
-  ));
+  const images = memeImages.map((img, i) => {
+    img.width = 50;
+    img.height = 50;
+
+    return (
+      <img
+        key={i}
+        className={styles.imgMeme}
+        onClick={handleMemeSelector}
+        src={img.src}
+        style={{
+          width: img.width + "px",
+          height: img.height + "px",
+        }}
+        alt="img"
+      />
+    );
+  });
 
   return (
     <div className={styles.egMemeContainer}>
